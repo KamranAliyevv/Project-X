@@ -1,0 +1,43 @@
+.advantages{
+    padding: 50px 0;
+
+    .advantages-inner{
+        @include flex(null,null,center);
+
+        @include media(992px){
+            flex-direction: column;
+        }
+    }
+    .advantage{
+        width: 33%;
+        @include flex(column,center,center);
+        color:$clr-gray-1;
+
+        @include media(992px){
+            width: 100%;
+        }
+
+        &:not(:last-of-type){
+            margin-right: 15%;
+
+            @include media(992px){
+                    margin: 0;
+                    margin-bottom: 45px;
+            }
+        }
+
+        img{
+            width: 30%;
+            margin-bottom:30px;
+        }
+        h4{
+            font-size:20px;
+            line-height:28px;
+            margin-bottom:24px;
+        }
+        p{
+            line-height: 24px;
+            text-align: center;
+        }
+    }
+}

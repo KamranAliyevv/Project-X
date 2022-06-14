@@ -1,0 +1,30 @@
+@import "../utils/variables";
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family:$font-Euclid-Circular-A;
+}
+.container{
+    margin: 0 auto;
+    max-width: 90%;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+ul li,
+ol li{
+    list-style-type: none;
+}
+button,input,textarea{
+    border: 0;
+    outline: 0;
+}
+button{
+    cursor: pointer;
+    background-color: transparent;
+}
