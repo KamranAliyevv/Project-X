@@ -17,8 +17,8 @@ const Partner = () => {
         slidesToShow: 6,
         swipeToSlide:true,
         initialSlide: 0,
-        dots:true,
       };
+      settings.dots=false;
   return (
     <div className='partners'>
         <div className="container">

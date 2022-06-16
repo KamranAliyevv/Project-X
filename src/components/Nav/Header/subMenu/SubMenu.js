@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {FaArrowLeft} from "react-icons/fa"
 
 const SubMenu = ({getSubCategory,subData,show,setShow}) => {

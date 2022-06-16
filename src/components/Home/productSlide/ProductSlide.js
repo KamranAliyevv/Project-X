@@ -37,7 +37,7 @@ import product4 from "../../../design/images/product-4.png";
 //       }
 //     ]
 //   };
-const settings = {
+let settings = {
   className: "slider variable-width",
   dots: true,
   infinite: true,
@@ -46,9 +46,9 @@ const settings = {
   slidesToShow: 1,
   swipeToSlide:true,
   speed:1000,
-  dots:false,
   variableWidth: true
 };
+settings.dots=false;
   
 const ProductsSlider = ({link,text}) => {
   return (
