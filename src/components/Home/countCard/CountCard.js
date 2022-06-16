@@ -17,10 +17,10 @@ const CountCard = () => {
                             Məhsul sayı:
                             <span>14</span>
                         </p>
-                        <a href='#'>
+                        {/* <a href='#'>
                         Məhsullar keçid
                         <FaAngleRight/>
-                        </a>
+                        </a> */}
                     </div>
                     <img src={phoneCard} alt="CardImage" />
                 </div>
@@ -33,10 +33,10 @@ const CountCard = () => {
                             Məhsul sayı:
                             <span>14</span>
                         </p>
-                        <a href='#'>
+                        {/* <a href=''>
                         Məhsullar keçid
                         <FaAngleRight/>
-                        </a>
+                        </a> */}
                     </div>
                     <img src={smartCard} alt="CardImage" />
                 </div>
@@ -47,10 +47,10 @@ const CountCard = () => {
                             Məhsul sayı:
                             <span>14</span>
                         </p>
-                        <a href='#'>
+                        {/* <a href='#'>
                         Məhsullar keçid
                         <FaAngleRight/>
-                        </a>
+                        </a> */}
                     </div>
                     <img src={aksesuarCard} alt="CardImage" />
                 </div>
