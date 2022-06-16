@@ -9,6 +9,7 @@
     padding: 40px 0;
 
     .banner-inner{
+        display: flex!important;
         @include flex(row,space-between,center);
 
         @include media(992px){
@@ -61,4 +62,7 @@
     background-color: $clr-link-active;
     border-radius: 50%;
     content:"";
+}
+.slick-slider button{
+    display: none!important;
 }

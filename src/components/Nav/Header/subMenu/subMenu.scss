@@ -1,0 +1,105 @@
+.subMenu{
+    position: absolute;
+    top:100%;
+    width: 100%;
+    left: 0;
+    height: 100vh;
+    opacity: 0;
+    display: none;
+    transition: .5s;
+
+    &.show{
+        opacity: 1;
+        display: block;
+    }
+
+    @include media(992px){
+        z-index: 1000;
+        height: calc(100vh - 140px);
+        top:50%;
+        left: 100%;
+        opacity: 1;
+        display: block;
+        padding:0 5%;
+        background-color: #fff;
+
+        &.show{
+            left: 0;
+        }
+    }
+
+    .subMenu-inner{
+        position: relative;
+        height: 100%;
+    }
+    .subMenu-back{
+        position: absolute;
+        top: 20px;
+        left: 5px;
+        font-size: 20px;
+        cursor: pointer;
+        @include flex($align:center);
+        display: none;
+
+        span{
+            margin-left: 15px;
+            color: $clr-gray-3;
+        }
+
+        @include media(992px){
+            display: block;
+        }
+    }
+    .subMenu-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        opacity: .3;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+    .subMenu-items{
+        height: 40%;
+        background-color: #fff;
+        @include flex();
+        padding: 40px 5%;
+
+        @include media(992px){
+            height: 100%;
+            padding-top: 70px;
+            flex-wrap: wrap;
+        }
+    }
+    .submenu-item{
+        width: 20%;
+        
+        @include media(992px){
+            width: 33%;
+        }
+        @include media(700px){
+            width: 50%;
+        }
+            
+    }
+    .sub-parent{
+        line-height: 24px;
+        font-weight: 600;
+        color: $clr-gray-2;
+        margin-bottom: 16px;
+    }
+    .sub-children{
+        @include flex(column,center);
+
+        li{
+            font-size: 14px;
+            line-height: 20px;
+            color: $clr-gray-2;
+
+            &:not(:last-child){
+                margin-bottom: 8px;
+            }
+        }
+    }
+}

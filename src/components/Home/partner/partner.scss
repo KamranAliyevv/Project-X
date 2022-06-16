@@ -5,6 +5,9 @@
     @include media(992px){
         display: none;
     }
+    .slic-slider > button{
+        display: none;
+    }
     
     .slick-slide > div{
         padding: 0 16px;

@@ -6,6 +6,7 @@
 
     .productSlider-inner{
         @include flex(column,center);
+        overflow: hidden
     }
     .productSlider-title{
         @include flex(row,space-between,center);
@@ -26,6 +27,12 @@
             }
         }
     }
+    .slick-slider > button{
+        display: none!important;
+    }
+    .slick-slide{
+        width: 250px!important;
+    }
     .slick-slide > div{
         padding:0 15px;
     }
@@ -36,13 +43,14 @@
     .sliderProduct{
         @include flex(column);
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        height: 400px;
+        height: 100%;
+        width: 18%;
         padding: 20px;
         outline:0;
 
         img{
             width:90%;
-            height: 240px;
+            height: 170px;
             margin:0 auto;
             margin-bottom:24px;
         }

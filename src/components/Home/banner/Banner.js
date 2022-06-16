@@ -4,15 +4,15 @@ import bannerImg from "../../../design/images/banner-img.png";
 import Slider from 'react-slick/lib/slider';
 
 const Banner = () => {
-    const settings = {
-        dots: true,
-        fade: true,
-        infinite: true,
-        speed: 500,
-        arrows:false,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
+  const settings = {
+    dots: true,
+    lazyLoad: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 2
+  };
 
   return (
     <div className='banner'>

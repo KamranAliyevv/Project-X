@@ -1,24 +1,43 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import {FiSearch,FiHeart,FiShoppingCart} from 'react-icons/fi'
 import {BiUser} from 'react-icons/bi'
 import {NavLink,Link} from "react-router-dom";
-import Home from '../../../pages/Home';
+// import Home from '../../../pages/Home';
 import logo from "../../../design/images/logo.png";
-import Commerce from '@chec/commerce.js';
+import SubMenu from './subMenu/SubMenu';
 
-const Header = () => {
+const Header = ({categories}) => {
     const [open,setOpen]=useState(false);
-
-    useEffect(()=>{
-        async function getProducts(){
-            let data= await fetch(Commerce);
-            let json=await(data.json);
-            console.log(json)
+    const [sub,setSub]=useState([]);
+    const [show,setShow]=useState(false);
+    
+    function getSubCategory(category,checkSize){
+        if(checkSize){
+            if(window.innerWidth>=992){
+                if(category?.children?.length>0){
+                    setSub(category);
+                    setShow(true)
+                    }
+                    else{
+                    setSub([])
+                    setShow(false);
+                    }
+            }
         }
-    },[])
-
+        else{
+            if(category?.children?.length>0){
+                setSub(category)
+                setShow(true);
+                }
+                else{
+                setSub([])
+                setShow(false);
+                }
+        }
+    }
+    console.log(sub)
+   
     function openMenu(){
-        console.log(1)
         setOpen(!open);
     }
   return (
@@ -53,20 +72,18 @@ const Header = () => {
         </div>
         <div className={`menu ${open ? "left-0" : ""}`} >
             <ul>
-            <li><NavLink to={"/"} element={<Home/>}/>Yeni</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Apple</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Samsung</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Xiaomi</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Redmi</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Bütün Brendlər</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Aksessuarlar</li>
-            <li><NavLink to={"/"} element={<Home/>}/>Endirimlər</li>
+            {categories.map(category=>{
+                 return(
+                    <li className={category.children.length>0 ? "active" : ""} onClick={()=>{getSubCategory(category,false)}} onMouseOver={()=>{getSubCategory(category,true)}} onMouseLeave={()=>getSubCategory(false,true)} key={category.id}>{category.children.length===0 ? <NavLink to={"/"}>{category.name}</NavLink> : category.name}</li>
+                 )
+            })}
             </ul>
             <div className="menu-btns">
                 <Link to=""><span className='login-btn'>Daxil ol</span></Link>
                 <Link to=""><span className='register-btn'>Qeydiyatdan keç</span></Link>
             </div>
         </div>
+        <SubMenu getSubCategory={getSubCategory} show={show} setShow={setShow} subData={sub}/>
         </div>
         </div>
     </header>

@@ -1,13 +1,14 @@
 #header {
-  padding-top: 24px;
-  padding-bottom: 12px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index:100;
+  background-color: #fff;
+  padding: 12px 0;
   border-bottom:1px solid #2DD06E;
-
-  @include media(992px){
-    position: fixed;
-    left: 0;
-    right:0;
-  }
+  // overflow: hidden;
 
   .header-inner{
     @include flex(column, null, null);
@@ -113,7 +114,8 @@
       }
     }
     .bag-icon {
-      @include flex(row, null, center);
+      @include flex($align:center);
+      position: relative;
 
       .bag-count {
         margin-left: 8px;
@@ -125,6 +127,14 @@
         color: #fff;
         font-size: 12px;
         @include flex(row, center, center);
+
+        @include media(700px){
+          position:absolute;
+          width: 15px;
+          height: 15px;
+          top: -5px;
+          right: -10px;
+        }
       }
     }
   }
@@ -153,7 +163,7 @@
         @include media(992px){
           flex-direction: column;
           align-items: start;
-          padding: 020px;
+          padding: 20px 5%;
         }
 
         li{
@@ -164,6 +174,10 @@
             transition: .5s;
 
             @include media(992px){
+              font-size: 20px;
+              line-height: 28px;
+              width: 100%;
+              position: relative;
               &:not(last-of-type){
                 margin-right: 0;
                 margin-bottom: 20px;
@@ -176,6 +190,24 @@
             &:hover{
                 color: $clr-link-active;
             }
+
+            a{
+            color:$clr-gray-2;
+            transition: .5s;
+            &:hover{
+              color: $clr-link-active;
+          }
+            }
+            &.active{
+              &::after{
+                content:">";
+                position: absolute;
+                top:0;
+                right: 0;
+                width: 5px;
+                height: 5px;
+            }
+          }
         }
     }
     .menu-btns{
@@ -186,7 +218,7 @@
         @include flex(null,space-between,center);
       }
       span{
-        padding: 15px 50px;
+        padding: 15px 30px;
         border:1px solid $clr-btn-green;
         border-radius:8px;
         font-size: 18px;

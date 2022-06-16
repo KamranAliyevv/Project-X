@@ -7,7 +7,7 @@ import {
   FaTwitter,
   FaEnvelope,
 } from "react-icons/fa";
-import { GrLocation } from "react-icons/gr";
+import { MdLocationPin } from "react-icons/md";
 import { MdCall } from "react-icons/md";
 import { Link } from "react-router-dom";
 const Footer = () => {
@@ -55,7 +55,7 @@ const Footer = () => {
             <ul className="footer-menus">
               <h3>Əlaqə</h3>
               <li>
-                {<GrLocation/>}
+                {<MdLocationPin/>}
                 M. K. Ataturk avenue 89, Baku, Azerbaijan
               </li>
               <li>

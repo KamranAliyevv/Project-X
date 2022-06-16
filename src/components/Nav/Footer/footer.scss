@@ -6,23 +6,37 @@
         padding: 30px 0;
         @include flex(null,space-between);
 
-        > div{
-            width: 20%;
+        @include media(992px){
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        @include media(700px){
+         text-align: center;
         }
 
-        @include media(992px){
-            flex-direction: column;
-            align-items: center;
-            
-            > div{
-                width: 100%
+        > *{
+            width: 20%;
+
+            @include media(992px){
+                width: 46%;
+            }
+            @include media(700px){
+                width: 100%;
             }
         }
     }
     .social{
-        @include flex(null,space-between,center);
+        @include flex($align:center);
         color:#fff;
         font-size: 17px;
+
+        li:not(:last-child){
+            margin-right: 30px;
+        }
+
+        @include media(700px){
+        justify-content: center;
+        }
     }
         &:not(:last-of-type){
             margin-right: 32px;
@@ -31,6 +45,7 @@
        
     .footer-menus{
         color:#fff;
+
 
         h3{
             font-size:20px;
@@ -57,13 +72,24 @@
         border-top: 1px solid rgba(238, 236, 236, 0.6);
         padding: 30px 0;
         color:#fff;
+        position: relative;
+        margin-top: 90px
     }
     .footer-bottom-inner{
         @include flex(null,space-between,center);
+        @include media(700px){
+            justify-content: center;
+        }
     }
         .secrety{
             a:first-child{
                 margin-right:25px;
+            }
+            @include media(700px){
+                position: absolute;
+                top: -50px;
+                font-size: 14px;
+                line-height: 20px;
             }
         }
 }

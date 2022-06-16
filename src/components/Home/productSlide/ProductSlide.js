@@ -6,37 +6,49 @@ import product2 from "../../../design/images/product-2.png";
 import product3 from "../../../design/images/product-3.png";
 import product4 from "../../../design/images/product-4.png";
 
-var settings = {
-    dots: true,
-    infinite: false,
-    speed: 1000,
-    slidesToShow: 4,
-    initialSlide: 1,
-    swipeToSlide:true,
-    dots:false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        }
-      }
-    ]
-  };
+// var settings = {
+//     dots: true,
+//     infinite: false,
+//     speed: 1000,
+//     slidesToShow: 4,
+//     initialSlide: 1,
+//     swipeToSlide:true,
+//     dots:false,
+//     responsive: [
+//       {
+//         breakpoint: 1024,
+//         settings: {
+//           slidesToShow: 3,
+//           infinite: true,
+//         }
+//       },
+//       {
+//         breakpoint: 600,
+//         settings: {
+//           slidesToShow: 2,
+//           initialSlide: 2
+//         }
+//       },
+//       {
+//         breakpoint: 480,
+//         settings: {
+//           slidesToShow: 1,
+//         }
+//       }
+//     ]
+//   };
+const settings = {
+  className: "slider variable-width",
+  dots: true,
+  infinite: true,
+  centerMode: false,
+  initialSlide: 1,
+  slidesToShow: 1,
+  swipeToSlide:true,
+  speed:1000,
+  dots:false,
+  variableWidth: true
+};
   
 const ProductsSlider = ({link,text}) => {
   return (
