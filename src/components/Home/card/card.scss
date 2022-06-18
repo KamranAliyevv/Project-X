@@ -13,7 +13,7 @@
     padding: 15px 20px;
     background-repeat: no-repeat;
     background-size: cover;
-    @include flex(null, null, center);
+    @include flex(row, space-between, center);
 
     @include media(992px){
       width: 100%;
@@ -84,7 +84,7 @@
   }
   .card-image {
     position: relative;
-    width: 40%;
+    width: 35%;
     height: 100%;
     @include flex(null,null,center);
     gap: 20px;

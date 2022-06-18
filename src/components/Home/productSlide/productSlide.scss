@@ -6,7 +6,8 @@
 
     .productSlider-inner{
         @include flex(column,center);
-        overflow: hidden
+        overflow: hidden;
+        position: relative;
     }
     .productSlider-title{
         @include flex(row,space-between,center);
@@ -22,6 +23,13 @@
             @include flex(row,null,center);
             line-height: 16px;
 
+            @include media(992px){
+                position: absolute;
+                bottom: 5px;
+                // left: 50%;
+                width: 100%;
+                @include flex($justify:center);
+            }
             span{
                 margin-right: 17px;
             }
@@ -39,11 +47,15 @@
     .slick-list{
        margin: 0 -15px;
        padding: 5px 0;
+
+       @include media(992px){
+        padding-bottom: 60px;
+       }
     }
     .sliderProduct{
         @include flex(column);
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        height: 100%;
+        height: 320px;
         width: 18%;
         padding: 20px;
         outline:0;
@@ -59,6 +71,7 @@
             width:90%;
 
             h3{
+                font-size: 16px;
                 line-height:24px;
                 color:$clr-gray-1;
                 margin-bottom:18px;

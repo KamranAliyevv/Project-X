@@ -1,5 +1,4 @@
 import React from 'react'
-import {FaAngleRight} from "react-icons/fa";
 import phoneCard from "../../../design/images/phoneCard.png";
 import smartCard from "../../../design/images/smartCard.png";
 import aksesuarCard from "../../../design/images/aksesuarCard.png";

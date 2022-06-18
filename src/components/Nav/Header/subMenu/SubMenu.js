@@ -3,13 +3,13 @@ import {FaArrowLeft} from "react-icons/fa"
 
 const SubMenu = ({getSubCategory,subData,show,setShow}) => {
   return (
-    <div className={`subMenu ${show ? "show" : ""}`} onMouseOver={()=>{getSubCategory(subData,true);console.log(1)}}>
+    <div className={`subMenu ${show ? "show" : ""}`} onMouseOver={()=>{getSubCategory(subData,true)}}>
         <div className="subMenu-inner">
             <div className="subMenu-overlay"></div>
             {subData?.children ? 
             <>
             <div onClick={()=>setShow(false)} className="subMenu-back"><FaArrowLeft/><span>{subData.name}</span></div>
-        <div onMouseOver={()=>{getSubCategory(subData,true);console.log(1)}} onMouseLeave={()=>{getSubCategory([],true)}} className="subMenu-items">
+        <div onMouseOver={()=>{getSubCategory(subData,true)}} onMouseLeave={()=>{getSubCategory([],true)}} className="subMenu-items">
             {subData.children.map(child=>{
                 return (
                 <div key={child.id} className="submenu-item">

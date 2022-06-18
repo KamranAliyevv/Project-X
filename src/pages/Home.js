@@ -9,40 +9,61 @@ import Advantages from "../components/Home/advantages/Advantages";
 import Partner from "../components/Home/partner/Partner";
 import Footer from "../components/Nav/Footer/Footer";
 import axios from "axios";
+import { baseURL } from '../api/baseUrl';
+import { useSelector,useDispatch } from 'react-redux';
+import { fetchAccesories,fetchAllProducts } from '../redux/actions/products';
 const Home = () => {
 
+  const dispatch=useDispatch();
+
   const [categories,setCategories]=useState([]);
+  const [products,setProducts]=useState([]);
+  const {accesories,allData}=useSelector(state=>state);
+  const x=useSelector(state=>state);
+  console.log(x)
+  async function getCategory(){
+    const categoryUrl = new URL(baseURL+"/categories");
 
+    let params = {
+      "depth": "3",
+  };
+
+  Object.keys(params)
+      .forEach(key => categoryUrl.searchParams.append(key, params[key]));
+
+      let response= await axios.get(categoryUrl,{
+      headers: {
+          "X-Authorization":"pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
+        },
+      }
+      )
+     if(response.data.data) setCategories(response.data.data.reverse());
+  }
+
+  async function getProducts(){
+    let productUrl="https://api.chec.io/v1/products";
+
+    let response=await axios.get(productUrl,{
+      headers:{
+        "X-Authorization":"pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
+      }
+    })
+    setProducts(response.data.data);
+  }
   useEffect(()=>{
-    async function getProducts(){
-      const url = new URL(
-        "https://api.chec.io/v1/categories"
-    );
-      let params = {
-        "depth": "3",
-    };
-
-    Object.keys(params)
-        .forEach(key => url.searchParams.append(key, params[key]));
-
-        let response= await axios.get(url,{
-        headers: {
-            "X-Authorization":"pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
-          },
-        }
-        )
-       if(response.data.data) setCategories(response.data.data.reverse());
-    }
-getProducts()
+    getProducts()
+    getCategory()
+    dispatch(fetchAccesories())
+    dispatch(fetchAllProducts())
 },[])
   return (
     <div id="home">
             <Header categories={categories}/>
             <Banner/>
-            <ProductSlide text="Ən çox satılan məhsullar"/>
-            <ProductSlide text="Yeni gələn məhsullar"/>
+            <ProductSlide products={products.filter(item=>item.categories.find(i=>i.slug!=="aksesuarlar")).slice(0,8)} text="Ən çox satılan məhsullar"/>
+            <ProductSlide products={products.filter(item=>item.categories.find(i=>i.slug!=="aksesuarlar")).slice(8,16)} text="Yeni gələn məhsullar"/>
             <Card/>
-            <ProductSlide text="Yeni gələn aksessuarlar"/>
+            <ProductSlide products={accesories.response} text="Yeni gələn aksessuarlar"/>
             <CountCard/>
             <Advantages/>
             <Partner/>

@@ -35,7 +35,6 @@ const Header = ({categories}) => {
                 }
         }
     }
-    console.log(sub)
    
     function openMenu(){
         setOpen(!open);

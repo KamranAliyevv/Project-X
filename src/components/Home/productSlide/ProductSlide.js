@@ -1,10 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
 import {FaAngleRight} from "react-icons/fa";
-import product1 from "../../../design/images/product-1.png";
-import product2 from "../../../design/images/product-2.png";
-import product3 from "../../../design/images/product-3.png";
-import product4 from "../../../design/images/product-4.png";
 
 // var settings = {
 //     dots: true,
@@ -39,8 +35,8 @@ import product4 from "../../../design/images/product-4.png";
 //   };
 let settings = {
   className: "slider variable-width",
-  dots: true,
-  infinite: true,
+  dots: false,
+  infinite: false,
   centerMode: false,
   initialSlide: 1,
   slidesToShow: 1,
@@ -50,7 +46,7 @@ let settings = {
 };
 settings.dots=false;
   
-const ProductsSlider = ({link,text}) => {
+const ProductsSlider = ({products,text}) => {
   return (
     <div className='productSlider'>
     <div className="container">
@@ -63,75 +59,22 @@ const ProductsSlider = ({link,text}) => {
           </div>
         </div>
         <Slider {...settings}>
-          <div className='sliderProduct'>
-            <img src={product2} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
+          {
+            products.map(item=>{
+              return (
+              <div key={item.id} className='sliderProduct'>
+              <img src={item.assets[0].url} alt="product" />
+              <div className="sliderProduct-body">
+                <h3>{item.name}</h3>
+                <div className="slider-prices">
+                  <div className="price-now"><span>{item.price.formatted}₼</span></div>
+                  {/* <div className="price-new"><span>2000</span></div> */}
+                </div>
               </div>
             </div>
-          </div>
-          <div className='sliderProduct'>
-            <img src={product3} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
-              </div>
-            </div>
-          </div>
-          <div className='sliderProduct'>
-            <img src={product4} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
-              </div>
-            </div>
-          </div>
-          <div className='sliderProduct'>
-            <img src={product2} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
-              </div>
-            </div>
-          </div>
-          <div className='sliderProduct'>
-            <img src={product3} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
-              </div>
-            </div>
-          </div><div className='sliderProduct'>
-            <img src={product4} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
-              </div>
-            </div>
-          </div>
-          <div className='sliderProduct'>
-            <img src={product1} alt="product" />
-            <div className="sliderProduct-body">
-              <h3>Apple  iPhone 12, 64 GB, Purple</h3>
-              <div className="slider-prices">
-                <div className="price-now"><span>1360₼</span></div>
-                {/* <div className="price-new"><span>2000</span></div> */}
-              </div>
-            </div>
-          </div>
+              )
+            })
+          }
         </Slider>
       </div>
     </div>
