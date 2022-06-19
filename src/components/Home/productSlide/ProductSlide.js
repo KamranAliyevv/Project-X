@@ -37,12 +37,11 @@ let settings = {
   className: "slider variable-width",
   dots: false,
   infinite: false,
-  centerMode: false,
   initialSlide: 1,
   slidesToShow: 1,
   swipeToSlide:true,
   speed:1000,
-  variableWidth: true
+  variableWidth: true,
 };
 settings.dots=false;
   

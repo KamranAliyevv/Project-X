@@ -5,8 +5,8 @@ export const fetchAccesories=createAsyncThunk(
     "accesoriesReducer/fetchAccesories",
     async ()=>{
         try {
-              let accesories=await api.accesoriesData();
-              return accesories.data.data;
+              let response=await api.accesoriesData();
+              return response.data.data;
         }
         catch(error){
           return error.message
@@ -14,14 +14,25 @@ export const fetchAccesories=createAsyncThunk(
     }
 )
 
-export const fetchAllProducts=createAsyncThunk(
-  "all/fetchAllProducts",
+export const fetchPhones=createAsyncThunk(
+  "phonesReducer/fetchPhones",
   async () =>{
     try{
-      let response=await api.allProductData();
-      let phoneData=response.data.data.filter(item=>item.categories.find(i=>i.slug!=="aksesuarlar"));
-      console.log(phoneData)
-    return phoneData;
+      let response=await api.phonesData();
+    return response.data.data;
+    }
+    catch(error){
+      return error.message
+    }
+  }
+)
+
+export const fetchSmart=createAsyncThunk(
+  "smartReducer/fetchSmart",
+  async ()=>{
+    try{
+      let response=await api.smartData();
+      return response.data.data;
     }
     catch(error){
       return error.message

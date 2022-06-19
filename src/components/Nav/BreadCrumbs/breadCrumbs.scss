@@ -1,0 +1,26 @@
+@import "../../../design/styles/Sass/utils/variables";
+@import "../../../design/styles/Sass/utils/mixin";
+.breadcrumbs{
+    padding: 26px 0 36px;
+
+    .bread-list{
+        @include flex();
+
+        li{
+            font-size: 14px;
+            line-height: 20px;
+            margin-right: 8px;
+            @include flex($align:center);
+
+            a{
+                color: $clr-gray-2;
+            }
+            svg {
+                margin-left: 11px;
+            }
+        }
+        .bread-current{
+            color: $clr-gray-3;
+        }
+    }
+}

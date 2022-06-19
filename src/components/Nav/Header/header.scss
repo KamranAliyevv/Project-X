@@ -90,6 +90,11 @@
     border-radius: 8px;
     background-color: $clr-gray-5;
     margin-bottom: 12px;
+    transition: .5s;
+
+    &.none{
+      display: none;
+    }
 
     @include media(992px){
       order:2;
@@ -166,14 +171,14 @@
     background-color:#fff;
     height: 100%;
     z-index: 999;
-    padding-top: 140px;
+    padding-top: 80px;
     transition: .5s ease;
   }
     ul{
-        @include flex(row,start,center);
+        @include flex(row,flex-start,center);
         @include media(992px){
           flex-direction: column;
-          align-items: start;
+          align-items: flex-start;
           padding: 20px 5%;
         }
 

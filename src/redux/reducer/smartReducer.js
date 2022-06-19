@@ -1,28 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { allProductData } from "../../api/http";
+import { fetchSmart } from "../actions/products";
 
 const initialState={
     loading:false,
     error:null,
-    allProduct:[]
+    response:[]
 }
-
-export const allProductsReducer=createSlice({
-    name:"allProducts",
+const smartReducer=createSlice({
+    name:"smart",
     initialState,
     extraReducers:{
-        [allProductData.pending]: (state) => {
+        [fetchSmart.pending]: (state) => {
             state.loading=true;
         },
-        [allProductData.rejected]: (state,{payload})=>{
+        [fetchSmart.rejected]: (state,{payload})=>{
             state.loading=false;
             state.error=payload
         },
-        [allProductData.fulfilled]: (state,{payload})=>{
+        [fetchSmart.fulfilled]: (state,{payload})=>{
             state.loading=false;
             state.response=payload
         }
     }
 })
 
-export default allProductData.reducer;
+export default smartReducer.reducer;

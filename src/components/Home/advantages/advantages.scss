@@ -4,7 +4,7 @@
     .advantages-inner{
         @include flex(null,null,center);
 
-        @include media(992px){
+        @include media(700px){
             flex-direction: column;
         }
     }
@@ -13,14 +13,17 @@
         @include flex(column,center,center);
         color:$clr-gray-1;
 
-        @include media(992px){
+        @include media(700px){
             width: 100%;
         }
 
         &:not(:last-of-type){
-            margin-right: 15%;
+            margin-right: 80px;
 
             @include media(992px){
+                margin-right: 40px;
+        }
+            @include media(700px){
                     margin: 0;
                     margin-bottom: 45px;
             }

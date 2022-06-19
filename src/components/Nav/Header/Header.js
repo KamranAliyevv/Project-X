@@ -1,15 +1,38 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {FiSearch,FiHeart,FiShoppingCart} from 'react-icons/fi'
 import {BiUser} from 'react-icons/bi'
 import {NavLink,Link} from "react-router-dom";
 // import Home from '../../../pages/Home';
 import logo from "../../../design/images/logo.png";
 import SubMenu from './subMenu/SubMenu';
+import axios from 'axios';
+import { baseURL } from '../../../api/baseUrl';
 
-const Header = ({categories}) => {
+const Header = () => {
+    
+  const [categories,setCategories]=useState([]);
     const [open,setOpen]=useState(false);
     const [sub,setSub]=useState([]);
     const [show,setShow]=useState(false);
+
+    async function getCategory(){
+        const categoryUrl = new URL(baseURL+"/categories");
+    
+        let params = {
+          "depth": "3",
+      };
+    
+      Object.keys(params)
+          .forEach(key => categoryUrl.searchParams.append(key, params[key]));
+    
+          let response= await axios.get(categoryUrl,{
+          headers: {
+              "X-Authorization":"pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
+            },
+          }
+          )
+         if(response.data.data) setCategories(response.data.data.reverse());
+      }
     
     function getSubCategory(category,checkSize){
         if(checkSize){
@@ -38,7 +61,12 @@ const Header = ({categories}) => {
    
     function openMenu(){
         setOpen(!open);
+        setShow(false)
     }
+
+    useEffect(()=>{
+        getCategory();
+    },[])
   return (
     <header id="header">
         <div className="container">
@@ -52,7 +80,7 @@ const Header = ({categories}) => {
                 </div>
                 <img src={logo} alt="icon" />
             </div>
-            <div className="header-search">
+            <div className={`header-search${open ? " none" : ""}`}>
                 <form id="searchForm">
                 <button className='search-icon'>
                     <FiSearch/>
@@ -64,14 +92,14 @@ const Header = ({categories}) => {
                 <div className="user-icon">{<BiUser/>}</div>
                 <div className="favorites-icon">{<FiHeart/>}</div>
                 <div className="bag-icon">
-                    {<FiShoppingCart/>}
+                    <FiShoppingCart/>
                     <div className="bag-count">0</div>
                 </div>
             </div>
         </div>
         <div className={`menu ${open ? "left-0" : ""}`} >
             <ul>
-            {categories.map(category=>{
+            {categories.slice(0,7).map(category=>{
                  return(
                     <li className={category.children.length>0 ? "active" : ""} onClick={()=>{getSubCategory(category,false)}} onMouseOver={()=>{getSubCategory(category,true)}} onMouseLeave={()=>getSubCategory(false,true)} key={category.id}>{category.children.length===0 ? <NavLink to={"/"}>{category.name}</NavLink> : category.name}</li>
                  )
@@ -82,7 +110,7 @@ const Header = ({categories}) => {
                 <Link to=""><span className='register-btn'>Qeydiyatdan keç</span></Link>
             </div>
         </div>
-        <SubMenu getSubCategory={getSubCategory} show={show} setShow={setShow} subData={sub}/>
+        <SubMenu open={open} getSubCategory={getSubCategory} show={show} setShow={setShow} subData={sub}/>
         </div>
         </div>
     </header>

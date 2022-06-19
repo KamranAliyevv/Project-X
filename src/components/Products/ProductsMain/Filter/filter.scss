@@ -1,0 +1,63 @@
+.filter-list{
+    @include flex(column,center);
+    width: 30%;
+
+    .filter-item{
+        @include flex(column,center);
+    }
+    .filter-title{
+        @include flex(null,space-between,center);
+        padding-bottom: 10px;
+        border-bottom: 1px solid $clr-gray-4;
+
+        h3{
+            font-size: 14px;
+            line-height: 20px;
+            color: $clr-gray-2;
+            @include flex($align:center);
+
+            span{
+                font-size: 12px;
+                line-height: 16px;
+                color: #BBBBBB;
+                margin-left: 8px;
+            }
+        }
+        span{
+            cursor: pointer;
+        }
+    }
+
+    .filter-main{
+        margin-top: 32px;
+        @include flex(column,center);
+        height: 0;
+        contain: content;
+        transition: .5s;
+
+        &.active{
+            height: 92px;
+        }
+    }
+
+    .filter-group{
+        @include flex($align:center);
+
+        input{
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            border: 1px solid $clr-btn-green;
+            margin-right: 16px;
+        }
+        p{
+            font-size: 14px;
+            line-height: 20px;
+            color: $clr-gray-2;
+        }
+
+        &:not(:last-child){
+            margin-bottom: 16px;
+        }
+    }
+}
