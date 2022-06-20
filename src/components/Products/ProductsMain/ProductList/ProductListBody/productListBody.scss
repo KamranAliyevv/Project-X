@@ -1,0 +1,14 @@
+.productList-body{
+    @include flex();
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .productList-item{
+        width: 31%;
+        margin-bottom: 32px;
+
+        // &:not(:last-child){
+        //     // padding-right: 24px;
+        // }
+    }
+}

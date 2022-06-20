@@ -1,6 +1,6 @@
 
-#product{
-    .product-inner{
-        display: flex;
+#products{
+    .products-inner{
+        @include flex($align:flex-start)
     }
 }

@@ -31,7 +31,6 @@ const Home = () => {
             <CountCard/>
             <Advantages/>
             <Partner/>
-            <Footer/>
     </div>
   )
 }

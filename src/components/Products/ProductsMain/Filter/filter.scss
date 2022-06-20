@@ -1,6 +1,6 @@
 .filter-list{
     @include flex(column,center);
-    width: 30%;
+    width: 25%;
 
     .filter-item{
         @include flex(column,center);
@@ -31,12 +31,12 @@
     .filter-main{
         margin-top: 32px;
         @include flex(column,center);
-        height: 0;
-        contain: content;
+        max-height: 0;
+        overflow: hidden;
         transition: .5s;
 
         &.active{
-            height: 92px;
+            max-height: 100rem;
         }
     }
 

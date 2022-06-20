@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from "react-slick";
 import {FaAngleRight} from "react-icons/fa";
-
+import ProductCard from "../../Others/ProductCard/ProductCard";
 // var settings = {
 //     dots: true,
 //     infinite: false,
@@ -61,16 +61,7 @@ const ProductsSlider = ({products,text}) => {
           {
             products.map(item=>{
               return (
-              <div key={item.id} className='sliderProduct'>
-              <img src={item.assets[0].url} alt="product" />
-              <div className="sliderProduct-body">
-                <h3>{item.name}</h3>
-                <div className="slider-prices">
-                  <div className="price-now"><span>{item.price.formatted}₼</span></div>
-                  {/* <div className="price-new"><span>2000</span></div> */}
-                </div>
-              </div>
-            </div>
+              item ? <ProductCard key={item.id} item={item}/>  : ""
               )
             })
           }

@@ -22,9 +22,12 @@ ul li,
 ol li{
     list-style-type: none;
 }
-button,input,textarea{
-    border: 0;
-    outline: 0;
+button,input,textarea,select,option{
+    border: 0px;
+    outline: 0px;
+}
+option{
+    border: 1px solid red;
 }
 button{
     cursor: pointer;

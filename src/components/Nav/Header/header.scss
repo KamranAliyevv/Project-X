@@ -211,11 +211,14 @@
             a{
             color:$clr-gray-2;
             transition: .5s;
+            .active{
+              color: $clr-link-active;
+            }
             &:hover{
               color: $clr-link-active;
           }
             }
-            &.active{
+            &.subActive{
               @include media(992px){
                 &::after{
                   content:">";
