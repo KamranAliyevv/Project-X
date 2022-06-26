@@ -1,14 +1,15 @@
 .productList-body{
-    @include flex();
+    @include flex($justify:flex-start);
     flex-wrap: wrap;
-    justify-content: space-between;
+   gap: 23px; 
+   margin-bottom: 75px;
 
     .productList-item{
-        width: 31%;
+        width: calc((100% / 3) - 23px);
         margin-bottom: 32px;
 
-        // &:not(:last-child){
-        //     // padding-right: 24px;
-        // }
+        @include media(992px){
+            width: calc((100% / 2) - 15px);
+        }
     }
 }

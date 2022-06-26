@@ -1,0 +1,47 @@
+.propertyList{
+    @include flex($justify:space-between);
+    padding: 0 75px;
+    margin-top: 32px;
+
+    @include media(800px){
+        flex-direction: column;
+    }
+
+    h3{
+        font-size: 20px;
+        line-height: 28px;
+        color: $clr-gray-2;
+        margin-bottom: 24px;
+    }
+    p{
+        padding-left: 10px;
+        font-size: 16px;
+        line-height: 24px;
+        color: $clr-gray-3;
+    }
+
+    .properties,
+    .property-about{
+        width: 45%;
+
+        @include media(800px){
+            width: 100%
+        }
+    }
+    .properties{
+        margin-bottom: 50px
+    }
+    .propertyItem{
+        @include flex(column);
+    }
+    .propertySub{
+        @include flex(column,space-between);
+    }
+    .propertySubItem{
+        @include flex($justify:space-between);
+
+        &:not(:last-child){
+            margin-bottom: 16px;
+        }
+    }
+}

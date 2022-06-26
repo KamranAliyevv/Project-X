@@ -6,7 +6,6 @@ import Card from "../../components/Home/card/Card";
 import CountCard from "../../components/Home/countCard/CountCard";
 import Advantages from "../../components/Home/advantages/Advantages";
 import Partner from "../../components/Home/partner/Partner";
-import Footer from "../../components/Nav/Footer/Footer";
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchAccesories,fetchPhones,fetchSmart } from '../../redux/actions/products';
 const Home = () => {

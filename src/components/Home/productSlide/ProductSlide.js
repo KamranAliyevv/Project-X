@@ -36,7 +36,7 @@ import ProductCard from "../../Others/ProductCard/ProductCard";
 let settings = {
   className: "slider variable-width",
   dots: false,
-  infinite: false,
+  infinite: true,
   initialSlide: 1,
   slidesToShow: 1,
   swipeToSlide:true,
@@ -46,6 +46,10 @@ let settings = {
 settings.dots=false;
   
 const ProductsSlider = ({products,text}) => {
+
+  function clickHandler(){
+    console.log(1)
+  }
   return (
     <div className='productSlider'>
     <div className="container">
@@ -61,7 +65,7 @@ const ProductsSlider = ({products,text}) => {
           {
             products.map(item=>{
               return (
-              item ? <ProductCard key={item.id} item={item}/>  : ""
+              item ? <ProductCard clickHandler={()=>clickHandler(item.id)} key={item.id} item={item}/>  : ""
               )
             })
           }

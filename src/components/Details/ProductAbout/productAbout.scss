@@ -1,0 +1,8 @@
+.productAbout{
+    @include flex($justify:space-between);
+
+    @include media(800px){
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,6 +1,10 @@
 .productList-filter{
-    @include flex($justify:space-between);
+    @include flex(null,space-between,center);
     margin-bottom: 42px;
+
+    @include media(992px){
+        flex-wrap: wrap;
+    }
     
     p{
         font-size: 14px;
@@ -8,16 +12,53 @@
         color: $clr-gray-1;
         font-weight: 700;
         margin-left: 12px;
+        
+        @include media(992px){
+            order: 2;
+            width: 100%;
+            padding-top: 32px;
+            border-top: 1px solid #EDF1F7;
+            margin: 0;
+        }
     }
 
-    .products-dropdown{
-        width: 150px;
-        height: 40px;
-        border: 1px solid $clr-gray-4;
-        border-radius: 8px;
-        position: relative;
-        overflow: hidden;
+    .products-rules{
+        @include flex($align:center);
+        cursor: pointer;
+        
+        @include media(992px){
+            padding:0 5%;
+        }
 
+        svg{
+            margin-right: 10px;
+
+            &.dropdown{
+                display: none;
+
+                @include media(992px){
+                    display: block;
+                }
+            }
+        }
+
+    span{
+        position: absolute;
+        width: 14px;
+        color: $clr-gray-2;
+        right: 16px;
+        top: 11px;
+    }
+}
+
+.rules-dropdown{
+    border: 1px solid $clr-gray-4;
+   border-radius: 8px;
+   position: relative;
+   overflow: hidden;
+   width: 150px;
+        height: 40px;
+        
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -30,13 +71,22 @@
             cursor: pointer;
         }
 
-    span{
-        position: absolute;
-        width: 14px;
-        color: $clr-gray-2;
-        right: 16px;
-        top: 11px;
-        z-index: 1000;
-    }
+        @include media(992px){
+            border: 0;
+
+            select{
+                padding: 0;
+            }
+            span{
+                display: none;
+            }
+        }
+}
+.rules-filter{
+   display: none;
+
+   @include media(992px){
+    display: flex;
+   }
 }
 }

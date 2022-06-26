@@ -1,36 +1,24 @@
-import React,{useState,useEffect} from 'react'
+import React, {useState } from 'react'
 import ProductListFilter from './ProductListFilter/ProductListFilter'
 import ProductListBody from './ProductListBody/ProductListBody'
-import {useParams} from "react-router-dom";
-import { allProductData } from '../../../../api/http';
+import PaginationComp from '../../../Others/Pagination/Pagination';
+import { useSelector } from 'react-redux/es/exports';
 
-const ProductList = () => {
-  const [allData,setAllData]=useState([]);
-  const params=useParams();
-
-  const getAllProduct= async ()=>{
-    const response=await allProductData();
-    if(params.slug==="butun-mehsullar"){
-      setAllData(response.data.data);
-    }
-    else{
-      let data=response.data.data.filter(item=>item.categories.find(i=>i.slug===params.slug))
-    console.log(data)
-    setAllData(data);
-    }
-    
-  }
-  
-  useEffect(()=>{
-  getAllProduct();
-  },[])
+const ProductList = ({setOpen}) => {
+const products=useSelector(state=>state.products);
+// products?.response?.filter((item) => {
+//     let cats=[];
+//     item.categories.forEach(el=>cats.push(el.name));
+//     console.log(cats.find(x=>["Apple"].includes(x)));
+// })
 
   return (
     <div className='product-list'>
-     {allData.length > 0 ?
+     {products.response.length > 0 ?
      <>
-      <ProductListFilter count={allData.length}/>
-      <ProductListBody products={allData}/>
+      <ProductListFilter setOpen={()=>setOpen}/>
+      <ProductListBody/>
+      <PaginationComp products={products.response } count={6}/>
      </>
      :""
      }
@@ -39,3 +27,22 @@ const ProductList = () => {
 }
 
 export default ProductList
+
+
+
+// useCallback(()=>{
+//   const getAllProduct = async ()=>{
+//     if(params.slug==="butun-mehsullar"){
+//       params.slug=null;
+//     }
+//     console.log(params.slug)
+//     const response=await axios.get(`${baseURL}/products? ${params.slug ? `category_slug=${params.slug}` :""}`,
+//     {
+//       headers:{
+//         "X-Authorization":"pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
+//       }
+//      });
+//     setAllData(response.data.data);
+//   }
+//   getAllProduct();
+// },[params])

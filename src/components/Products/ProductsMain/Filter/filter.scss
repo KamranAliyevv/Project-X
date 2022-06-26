@@ -1,42 +1,63 @@
 .filter-list{
     @include flex(column,center);
-    width: 25%;
-
-    .filter-item{
-        @include flex(column,center);
-    }
-    .filter-title{
-        @include flex(null,space-between,center);
-        padding-bottom: 10px;
-        border-bottom: 1px solid $clr-gray-4;
-
-        h3{
-            font-size: 14px;
-            line-height: 20px;
-            color: $clr-gray-2;
-            @include flex($align:center);
-
-            span{
-                font-size: 12px;
-                line-height: 16px;
-                color: #BBBBBB;
-                margin-left: 8px;
-            }
-        }
-        span{
-            cursor: pointer;
-        }
-    }
-
-    .filter-main{
-        margin-top: 32px;
-        @include flex(column,center);
-        max-height: 0;
-        overflow: hidden;
+    
+    @include media(992px){
+        width: 100%;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        left: -100%;
         transition: .5s;
+        background-color: #fff;
+        z-index: 9999999;
+        justify-content: flex-start;
+        padding: 0 5%;
 
         &.active{
-            max-height: 100rem;
+            left: 0;
+        }
+    }
+
+    .mobile-filter-title{
+        padding: 20px 0;
+        @include flex($align:center);
+        display: none;
+
+        @include media(992px){
+            display: flex;
+        }
+
+        span{
+            width: 15px;
+            height: 15px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        h4{
+            font-size: 20px;
+            line-height: 28px;
+            color: $clr-gray-1;
+            margin-left: 22px;
+        }
+    }
+    .filter-item{
+        border-bottom: 1px solid $clr-gray-4;
+    }
+    .filter-main{
+        @include flex(column,center);
+    }
+    .filter-price{
+        flex-direction: row;
+       justify-content: space-between;
+
+        input{
+            width: 45%;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid $clr-gray-2;
+            padding:0 12px;
         }
     }
 
@@ -49,6 +70,12 @@
             border-radius: 3px;
             border: 1px solid $clr-btn-green;
             margin-right: 16px;
+            accent-color: #43a33e;
+            color: #fff;
+
+            :checked::before{
+                background-color: red;
+            }
         }
         p{
             font-size: 14px;
@@ -60,4 +87,36 @@
             margin-bottom: 16px;
         }
     }
+    .getFiltered-btn{
+        display: none;
+        width: 300px;
+        padding: 16px 50px;
+        font-size: 14px;
+        line-height:16px;
+        color: #fff;
+        background-color: $clr-btn-green;
+        border-radius: 8px;
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: .5s;
+
+        @include media(992px){
+            display: block;
+        }
+
+        &:hover{
+            opacity: .7;
+        }
+    }
+
+
+// ACCORDION
+
+.MuiAccordionSummary-content p{
+    width: fit-content;
+    margin-right: 10px;
+}
+
 }

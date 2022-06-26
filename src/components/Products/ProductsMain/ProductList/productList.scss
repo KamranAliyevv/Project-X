@@ -1,4 +1,9 @@
 .product-list{
     width: 75%;
     margin-left: 36px;
+    padding-bottom: 100px;
+
+    @include media(992px){
+        width: 100%;
+    }
 }

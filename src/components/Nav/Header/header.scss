@@ -211,7 +211,8 @@
             a{
             color:$clr-gray-2;
             transition: .5s;
-            .active{
+            
+            &.active{
               color: $clr-link-active;
             }
             &:hover{

@@ -1,28 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPhones } from "../actions/products";
+import { fetchDetail } from "../actions/products";
 
 const initialState={
     loading:false,
     error:null,
-    response:[],
+    response:[]
 }
 
-export const phonesSlice=createSlice({
-    name:"phones",
+export const detailSlice=createSlice({
+    name:"detail",
     initialState,
     extraReducers:{
-        [fetchPhones.pending]: (state) => {
+        [fetchDetail.pending]: (state) => {
             state.loading=true;
         },
-        [fetchPhones.rejected]: (state,{payload})=>{
+        [fetchDetail.rejected]: (state,{payload})=>{
             state.loading=false;
             state.error=payload
         },
-        [fetchPhones.fulfilled]: (state,{payload})=>{
+        [fetchDetail.fulfilled]: (state,{payload})=>{
             state.loading=false;
             state.response=payload;
         }
     }
 })
 
-export default phonesSlice.reducer;
+export default detailSlice.reducer;

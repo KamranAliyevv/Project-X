@@ -1,0 +1,24 @@
+.productProperty{
+    @include flex(column);
+    padding: 90px 0;
+
+    .property-title{
+        @include flex();
+        padding-bottom: 16px;
+        border-bottom: 1px solid $clr-gray-4;
+    }
+    .property-btn{
+        font-size: 20px;
+        line-height: 28px;
+        color: #BDBDBD;
+
+        &:first-child{
+            margin-right: 150px;
+        }
+
+        &.active{
+            color: $clr-gray-2;
+            font-weight: 600;
+        }
+    }
+}
