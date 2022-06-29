@@ -1,7 +1,6 @@
 import React from 'react'
-import logo from "../../../design/images/logo.png";
 import bannerImg from "../../../design/images/banner-img.png";
-import Slider from 'react-slick/lib/slider';
+import Slider from 'react-slick';
 
 const Banner = () => {
   const settings = {
@@ -29,16 +28,16 @@ const Banner = () => {
           </div>
           <div className="banner-inner">
         <div className='banner-info'>
-            <h2>Salam</h2>
+            <h2>Buy & Sell <br/> What's Now & Next</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, dolor. Eos ullam hic saepe quisquam enim a accusamus. Esse, consequatur.</p>
         </div>
           <div className='banner-img'>
-            <img src={logo} alt="bannerImg"/>
+            <img src={bannerImg} alt="bannerImg"/>
           </div>
           </div>
           <div className="banner-inner">
         <div className='banner-info'>
-            <h2>Buy & Sell</h2>
+            <h2>Buy & Sell <br/> What's Now & Next</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, dolor. Eos ullam hic saepe quisquam enim a accusamus. Esse, consequatur.</p>
         </div>
           <div className='banner-img'>

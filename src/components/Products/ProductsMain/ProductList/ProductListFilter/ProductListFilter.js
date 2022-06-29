@@ -4,6 +4,7 @@ import {GrFilter} from "react-icons/gr";
 import {TbArrowsUpDown} from "react-icons/tb";
 import { useDispatch, useSelector } from 'react-redux';
 import { sort } from '../../../../../redux/reducer/productsReducer';
+
 const ProductListFilter = ({setOpen}) => {
   const products=useSelector(state=>state.products);
   const dispatch=useDispatch();

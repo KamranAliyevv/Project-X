@@ -56,9 +56,8 @@ function allCheck(e){
 }
 
 useEffect(()=>{
-  dispatch(filter(filterItem))
-},[filterItem,dispatch])
-
+  dispatch(filter(filterItem));
+},[filterItem,dispatch]);
 
   return (
     <div className={ `filter-list ${open ? "active" : ""}`}>
@@ -111,7 +110,7 @@ useEffect(()=>{
       </Accordion>
       </div>
       </form>
-        <button className="getFiltered-btn">Filterlənmiş məhsulları göstər</button>
+        <button onClick={()=>{setOpen(false)}} className="getFiltered-btn">Filterlənmiş məhsulları göstər</button>
         
     </div>
   )

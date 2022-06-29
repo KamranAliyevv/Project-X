@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import "./details.scss";
 import BreadCrumbs from '../../components/Nav/BreadCrumbs/BreadCrumbs'
 import ProductAbout from "../../components/Details/ProductAbout/ProductAbout";
 import ProductProperty from '../../components/Details/ProductProperty/ProductProperty';
@@ -15,6 +14,7 @@ const Details = () => {
   useEffect(()=>{
     console.log(params)
     dispatch(fetchDetail(params.id));
+    window.scrollTo(0, 0);
   },[dispatch,params])
   return (
     <div id="details">

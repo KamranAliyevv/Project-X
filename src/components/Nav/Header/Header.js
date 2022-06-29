@@ -109,6 +109,7 @@ const Header = () => {
                     className={category.children.length > 0 ? "subActive" : ""}
                     onClick={() => {
                       getSubCategory(category, false);
+                      setOpen(false);
                     }}
                     onMouseOver={() => {
                       getSubCategory(category, true);

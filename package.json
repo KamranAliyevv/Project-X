@@ -11,8 +11,11 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@uiw/react-color-name": "^1.0.12",
     "axios": "^0.27.2",
+    "css-loader": "^6.7.1",
     "materialize-css": "^1.0.0-rc.2",
+    "pkg": "^5.7.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
@@ -22,7 +25,9 @@
     "react-slick": "^0.29.0",
     "redux": "^4.2.0",
     "sass": "^1.52.2",
+    "sass-loader": "^13.0.2",
     "slick-carousel": "^1.8.1",
+    "style-loader": "^3.3.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -48,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-prismazoom": "^3.0.3"
   }
 }

@@ -1,5 +1,4 @@
 import React,{useEffect} from 'react'
-import "../Home/home.scss";
 import Banner from '../../components/Home/banner/Banner';
 import ProductSlide from '../../components/Home/productSlide/ProductSlide';
 import Card from "../../components/Home/card/Card";
@@ -19,6 +18,7 @@ const Home = () => {
     dispatch(fetchAccesories())
     dispatch(fetchPhones())
     dispatch(fetchSmart());
+    window.scrollTo(0, 0);
 },[dispatch])
   return (
     <div id="home">

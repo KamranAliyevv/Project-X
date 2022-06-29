@@ -6,14 +6,15 @@ const initialState = {
   error: null,
   response: [],
   originalResponse: [],
+  page:0,
+  maxProduct:6
 };
 const productsReducer = createSlice({
   name: "products",
   initialState,
   reducers: {
     filter: (state, { payload }) => {
-        console.log(payload)
-      let filtered = state.originalResponse.filter((item) => {
+      let filtered = state?.originalResponse.length>0 && state?.originalResponse?.filter((item) => {
         let cats=[];
         item.categories.forEach(el=>cats.push(el.name))
         if (
@@ -26,10 +27,32 @@ const productsReducer = createSlice({
         return false
       });
        state.response=filtered;
+       state.page=0;
     },
 
     sort:(state,{payload})=>{
-        // let sorted=state.originalResponse.filter()
+      switch(payload){
+          case "yeni":
+            state?.originalResponse?.sort((a,b)=>b.updated - a.updated);
+            state.response.sort((a,b)=>b.updated - a.updated);
+            break;
+
+          case "baha":
+            state?.originalResponse?.sort((a,b)=>b.price.raw - a.price.raw);
+            state?.response?.sort((a,b)=>b.price.raw - a.price.raw);
+            break;
+
+          case "ucuz":
+            state?.originalResponse?.sort((a,b)=>a.price.raw - b.price.raw);
+            state?.response?.sort((a,b)=>a.price.raw - b.price.raw);
+            break;
+
+            default:
+        }
+    },
+
+    pagination: (state,{payload})=>{
+      state.page=payload
     }
   },
   extraReducers: {
@@ -50,6 +73,6 @@ const productsReducer = createSlice({
   },
 });
 
-export const { filter, sort } = productsReducer.actions;
+export const { filter, sort, pagination} = productsReducer.actions;
 
 export default productsReducer.reducer;

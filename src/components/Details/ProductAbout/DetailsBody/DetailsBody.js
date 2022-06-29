@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useCallback} from 'react'
 import { Box } from '@mui/system';
 import { Rating } from '@mui/material';
 import {CgShoppingCart} from "react-icons/cg";
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import colorNameToHex from '@uiw/react-color-name';
 
 const DetailsBody = ({setSelectImage}) => {
   const data=useSelector(state=>state.details)
-
   const [colorActive,setColorActive]=useState(null)
   const [storageActive,setStorageActive]=useState(null)
   const [count,setCount]=useState(1);
@@ -15,21 +15,22 @@ const DetailsBody = ({setSelectImage}) => {
   function changeColor(id,imageId){
     setColorActive(id)
     let d=[...data.response.assets].filter((el)=>imageId.includes(el.id));
-    setSelectImage([d])
+    setSelectImage([d]);
   }
   function changeStorage(id,totalPrice){
     setStorageActive(id)
     setPrice(totalPrice)
   }
-  function setImage(){
+
+  const setImage = useCallback(()=>{
     if(data?.response.id!==undefined){
     setSelectImage([data.response.assets]);
     }
-  }
+  },[data,setSelectImage])
   useEffect(()=>{
     setImage();
-  },[data])
-
+  },[data,setImage])
+console.log(data?.response, data?.response?.id)
   return (
     data?.response && data?.response?.id!==undefined ?
     <div className='details-body'>
@@ -55,7 +56,7 @@ const DetailsBody = ({setSelectImage}) => {
         <p>Rəng:</p>
         <div className="colors">
          {data.response.variant_groups?.find(el=>el.name==="color")?.options.map(option=>{
-          return( <div key={option.id} onClick={()=>changeColor(option.id,option.assets)} className={`color-inner ${colorActive===option.id ? "active" : ""}`}><div className="color" style={{backgroundColor:option.name}}></div></div> )
+          return( <div key={option.id} onClick={()=>changeColor(option.id,option.assets)} className={`color-inner ${colorActive===option.id ? "active" : ""}`}><div className="color" style={{backgroundColor:colorNameToHex(option.name)}}></div></div> )
          })}
         </div>
       </div>

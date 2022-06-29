@@ -2,6 +2,7 @@
 
 .details-slider{
     width: 48%;
+    cursor: pointer;
 
     @include media(800px){
         width: 100%;
@@ -48,10 +49,28 @@
             height: 100%;
         };
     }
-    .slick-slide img{
-        width: 70%;
-        margin: 0 auto;
+    .slick-slide{
+        figure {
+            background-repeat: no-repeat;
+            width: 70%;
+            margin: 0 auto;
+            cursor: move;
+
+            img{width: 100%;}
+          }
+          
+          figure:hover {
+            width: 90%;
+            img{
+            pointer-events: none;
+            opacity: 0;
+            }
+          }
     }
+    // .slick-track div{
+    //     width: 100%!important;
+    //     height: 100%!important;
+    // }
     .slick-slider button{
         display: block!important;
         z-index: 1;
@@ -74,5 +93,8 @@
     }
     .slick-next{
         right: 0;
+    }
+    .cursorSearch{
+        cursor: search;
     }
 }
