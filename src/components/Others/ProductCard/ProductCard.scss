@@ -11,6 +11,10 @@
         height: 170px;
         margin:0 auto;
         margin-bottom:24px;
+
+        @include media(600px){
+            width: 100%;
+        }
     }
     .sliderProduct-body{
         @include flex(column);

@@ -7,12 +7,14 @@ import logo from "../../../design/images/logo.png";
 import SubMenu from "./subMenu/SubMenu";
 import axios from "axios";
 import { baseURL } from "../../../api/baseUrl";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const [open, setOpen] = useState(false);
   const [sub, setSub] = useState([]);
   const [show, setShow] = useState(false);
+  const navigate=useNavigate();
 
   async function getCategory() {
     const categoryUrl = new URL(baseURL + "/categories");
@@ -95,7 +97,7 @@ const Header = () => {
             <div className="header-icons">
               <div className="user-icon">{<BiUser />}</div>
               <div className="favorites-icon">{<FiHeart />}</div>
-              <div className="bag-icon">
+              <div onClick={()=>navigate("/basket")} className="bag-icon">
                 <FiShoppingCart />
                 <div className="bag-count">0</div>
               </div>

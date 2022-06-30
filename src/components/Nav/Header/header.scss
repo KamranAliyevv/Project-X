@@ -132,6 +132,7 @@
     .bag-icon {
       @include flex($align:center);
       position: relative;
+      cursor: pointer;
 
       .bag-count {
         margin-left: 8px;

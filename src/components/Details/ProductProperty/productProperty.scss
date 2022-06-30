@@ -6,6 +6,10 @@
         @include flex();
         padding-bottom: 16px;
         border-bottom: 1px solid $clr-gray-4;
+
+        @include media(700px){
+            justify-content: space-between;
+        }
     }
     .property-btn{
         font-size: 20px;
@@ -19,6 +23,28 @@
         &.active{
             color: $clr-gray-2;
             font-weight: 600;
+        }
+
+        @include media(700px){
+            width: 50%;
+            text-align: center;
+            position: relative;
+
+            &:first-child{
+                margin: 0;
+            }
+
+            &.active{
+                &::after{
+                    position: absolute;
+                    content: " ";
+                    width: 100%;
+                    height: 4px;
+                    background-color: $clr-btn-green;
+                    bottom: -18px;
+                    left: 0;
+                }
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -19,16 +19,16 @@ const DetailsSlider = ({selectImage}) => {
     slidesToScroll: 1,
   };
 
-  const [state,setState] =useState( {
-    backgroundPosition: '0% 0%'
-  })
+  // const [state,setState] =useState( {
+  //   backgroundPosition: '0% 0%'
+  // })
 
-  const handleMouseMove = e => {
-    const { left, top, width, height } = e.target.getBoundingClientRect()
-    const x = (e.pageX - left) / width * 100
-    const y = (e.pageY - top) / height * 100
-    setState({ backgroundPosition: `${x}% ${y}%` })
-  }
+  // const handleMouseMove = e => {
+  //   const { left, top, width, height } = e.target.getBoundingClientRect()
+  //   const x = (e.pageX - left) / width * 100
+  //   const y = (e.pageY - top) / height * 100
+  //   setState({ backgroundPosition: `${x}% ${y}%` })
+  // }
  
   return (
     <div className='details-slider'>
@@ -36,13 +36,7 @@ const DetailsSlider = ({selectImage}) => {
           {selectImage.map(ass=>{
               return (
             <div key={ass.id}>
-              <figure onMouseMove={handleMouseMove} style={{
-                backgroundImage:`url(${ass.url})`,
-                backgroundPosition:state.backgroundPosition
-
-              }}>
            <img src={ass.url} alt="" />
-    </figure>
           </div>
            )
           })}

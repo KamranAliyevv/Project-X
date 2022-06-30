@@ -50,22 +50,26 @@
         };
     }
     .slick-slide{
-        figure {
-            background-repeat: no-repeat;
-            width: 70%;
-            margin: 0 auto;
-            cursor: move;
+        // figure {
+        //     background-repeat: no-repeat;
+        //     width: 70%;
+        //     margin: 0 auto;
+        //     cursor: move;
 
-            img{width: 100%;}
+        //     img{width: 100%;}
+        //   }
+          img{
+            width: 70%;
+            height: auto;
+            margin: 0 auto;
           }
-          
-          figure:hover {
-            width: 90%;
-            img{
-            pointer-events: none;
-            opacity: 0;
-            }
-          }
+        //   figure:hover {
+        //     width: 90%;
+        //     img{
+        //     pointer-events: none;
+        //     opacity: 0;
+        //     }
+        //   }
     }
     // .slick-track div{
     //     width: 100%!important;
