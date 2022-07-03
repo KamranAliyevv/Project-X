@@ -1,6 +1,6 @@
 import React from 'react'
-import BasketContent from '../../components/Basket/BasketContent/BasketContent';
-import BasketTotal from '../../components/Basket/BasketTotal/BasketTotal';
+import BasketFull from '../../components/Basket/BasktFull/BasketFull';
+import BasketEmpty from '../../components/Basket/BasketEmpty/BasketEmpty';
 
 const Basket = () => {
   return (
@@ -11,8 +11,8 @@ const Basket = () => {
                 Səbət (5 məhsul)
                 </div>
                 <div className="basket-body">
-                <BasketContent/>
-                <BasketTotal/>
+                  <BasketFull/>
+                  {/* <BasketEmpty/> */}
                 </div>
             </div>
         </div>

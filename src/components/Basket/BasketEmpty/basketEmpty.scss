@@ -1,0 +1,35 @@
+.basket-empty{
+    @include flex(column,center,center);
+    background-color: #fff;
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+
+    img{
+        width:100px;
+        height: 100px;
+        margin-bottom: 48px;
+    }
+    p{
+        font-size: 16px;
+        line-height: 24px;
+        color: $clr-gray-4;
+        margin-bottom: 32px;
+    }
+    button{
+        padding: 16px 70px;
+        background-color: $clr-btn-green;
+        font-size: 14px;
+        line-height: 16px;
+        color: #fff;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: .5s;
+
+        &:hover{
+            background-color: #fff;
+            color: $clr-btn-green;
+            border-color: $clr-btn-green;
+        }
+    }
+}

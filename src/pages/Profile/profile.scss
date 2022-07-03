@@ -1,0 +1,42 @@
+@import "../../design/styles/Sass/utils/variables";
+@import "../../design/styles/Sass/utils/mixin";
+@import "../../components/Profile/ProfileMenu/ProfileMenu.scss";
+@import "../../components/Profile/ProfileBody/ProfileOrders/profileOrders.scss";
+@import "../../components/Profile/ProfileBody/OrderDetail/OrderDetail.scss";
+@import "../../components/Profile/ProfileBody/ProfileOrders/ProfileFull/profileFull.scss";
+@import "../../components/Profile/ProfileBody/ProfileOrders/ProfileEmpty/profileEmpty.scss";
+@import "../../components/Profile/ProfileBody/UserInfo/userInfo.scss";
+
+.profile {
+  padding-top: 40px;
+  background-color: #e5e5e5;
+  padding-bottom: 100px;
+  min-height: calc(100vh - 150px);
+
+  .profile-inner {
+    @include flex($justify: space-between);
+
+    @include media(992px){
+        flex-direction: column;
+    }
+  }
+
+  .profile-body {
+    width: 70%;
+
+    @include media(992px){
+        width: 100%;
+    }
+  }
+  .profil-title {
+    font-size: 20px;
+    line-height: 28px;
+    color: $clr-gray-2;
+    margin-bottom: 32px;
+    @include flex($align:center);
+
+      svg{
+          margin-right: 10px;
+      }
+  }
+}

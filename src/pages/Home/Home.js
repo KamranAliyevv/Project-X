@@ -18,7 +18,7 @@ const Home = () => {
     dispatch(fetchAccesories())
     dispatch(fetchPhones())
     dispatch(fetchSmart());
-    window.scrollTo(0, 0);
+    window.scrollTo(100, 0);
 },[dispatch])
   return (
     <div id="home">

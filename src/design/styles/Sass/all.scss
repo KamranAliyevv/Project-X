@@ -2,9 +2,12 @@
 @import "./utils/variables";
 @import "./utils/reset";
 @import "./utils/mixin";
+@import "./helper/form.scss";
 
 // PAGES
 @import "../../../pages/Home/home.scss";
 @import "../../../pages/Products/products.scss";
 @import "../../../pages/Details/details.scss";
 @import "../../../pages/Basket/basket.scss";
+@import "../../../pages/Profile/profile.scss";
+@import "../../../pages/Error/error.scss";

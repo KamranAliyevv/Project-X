@@ -8,6 +8,7 @@
     display: none;
     transition: .5s;
 
+
     &.show{
         opacity: 1;
         display: block;
@@ -62,6 +63,10 @@
         height: 100%;
         width: 100%;
         z-index: -1;
+
+        &:hover +.subMenu-items{
+                display: none;
+            }
     }
     .subMenu-items{
         height: 40%;

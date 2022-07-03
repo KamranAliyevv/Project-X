@@ -36,9 +36,9 @@ const maxPriceRef=useRef();
 
 function checkBrend(e){
   if(e.target.checked){
-    let copyArray={...filterItem};
-    copyArray.brend.push(e.target.value)
-    setFilterItem(filterItem);
+    let copyFilter={...filterItem};
+    copyFilter.brend.push(e.target.value)
+    setFilterItem(copyFilter);
   }
   else{
     let index=filterItem.brend.indexOf(e.target.value);
@@ -56,6 +56,7 @@ function allCheck(e){
 }
 
 useEffect(()=>{
+  console.log(filterItem)
   dispatch(filter(filterItem));
 },[filterItem,dispatch]);
 
@@ -65,7 +66,7 @@ useEffect(()=>{
         <span onClick={()=>setOpen(false)}><GrClose/></span>
         <h4>Filterləmələr</h4>
       </div>
-        <form onChange={allCheck}>
+        <form>
         <div className="filter-item">
 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
@@ -103,8 +104,8 @@ useEffect(()=>{
         </AccordionSummary>
         <AccordionDetails>
           <div className={`filter-main filter-price${open ? " active" : ""}`}>
-                <input ref={minPriceRef} type="text" placeholder={minPrice}/>
-                <input ref={maxPriceRef} type="text" placeholder={maxPrice}/>
+                <input onChange={allCheck} ref={minPriceRef} type="text" placeholder={minPrice}/>
+                <input onChange={allCheck} ref={maxPriceRef} type="text" placeholder={maxPrice}/>
             </div>
         </AccordionDetails>
       </Accordion>

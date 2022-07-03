@@ -1,0 +1,65 @@
+.userForm{
+    .form-group-list{
+    @include flex($justify:space-between);
+    flex-wrap: wrap;
+    }
+   .form-group{
+    margin-bottom: 24px;
+    
+    label{
+        display: inline-block;
+        font-size: 14px;
+        line-height: 20px;
+        color: $clr-gray-2;
+        margin-bottom: 8px;
+    }
+    .form-input{
+        background-color: $clr-gray-6;
+        border-radius: 8px;
+        padding: 0 16px;
+        @include flex($align:center);
+        height: 50px;
+
+      *{
+            border: 0;
+        }
+
+        input,textarea,select{
+            padding: 0;
+            width: 100%;
+            background-color: transparent;
+            font-size: 14px;
+            line-height: 20px;
+            color: $clr-gray-1;
+            height:100%;
+        }
+    }
+   } 
+
+   > button{
+    @include flex($align:center);
+    background-color: $clr-btn-green;
+    padding: 16px 80px;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    border: 1px solid transparent;
+    transition: .7s;
+    margin: 0 auto;
+    border-radius: 8px;
+
+    &:hover{
+        background-color: #fff;
+        color: $clr-btn-green;
+        border-color: $clr-btn-green;
+    }
+    svg{
+        margin-right: 8px;
+    }
+}
+//    material
+
+.MuiFormControl-root{
+    width: 100%;
+}
+}

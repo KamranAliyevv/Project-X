@@ -1,0 +1,3 @@
+.basket-full{
+    @include flex($justify:space-between);
+}

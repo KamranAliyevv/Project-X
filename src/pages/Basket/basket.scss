@@ -1,7 +1,10 @@
 @import "../../design/styles/Sass/utils/variables";
 @import "../../design/styles/Sass/utils/mixin";
-@import "../../components/Basket/BasketContent/basketContent.scss";
-@import "../../components/Basket/BasketTotal/basketTotal.scss";
+@import "../../components/Basket/BasktFull/BasketFull.scss";
+@import "../../components/Basket/BasktFull/BasketContent/basketContent.scss";
+@import "../../components/Basket/BasktFull/BasketTotal/basketTotal.scss";
+@import "../../components/Basket/BasketEmpty/basketEmpty.scss";
+
 
 
 .basket{
@@ -13,8 +16,5 @@
         line-height: 28px;
         color: $clr-gray-2;
         padding: 40px 0;
-    }
-    .basket-body{
-        @include flex($justify:space-between);
     }
 }
