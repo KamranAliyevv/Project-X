@@ -124,6 +124,7 @@
     > div {
       font-size: 17px;
       @include flex(row, null, center);
+      cursor: pointer;
 
       &:not(:last-of-type) {
         margin-right: 28px;
@@ -154,6 +155,9 @@
         }
       }
     }
+  }
+  .header-logo{
+    text-align: center;
   }
 }
 

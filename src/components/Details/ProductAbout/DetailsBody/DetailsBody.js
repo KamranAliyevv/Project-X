@@ -3,9 +3,9 @@ import { Box } from "@mui/system";
 import { Rating } from "@mui/material";
 import { CgShoppingCart } from "react-icons/cg";
 import {AiOutlineInfoCircle} from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux/es/exports";
+import {useSelector } from "react-redux/es/exports";
 import colorNameToHex from "@uiw/react-color-name";
-import { createBasket } from "../../../../redux/actions/basket";
+// import { createBasket } from "../../../../redux/actions/basket";
 
 const DetailsBody = ({ setSelectImage }) => {
   const data = useSelector((state) => state.details);
@@ -16,7 +16,7 @@ const DetailsBody = ({ setSelectImage }) => {
   const [selectColor, setSelectColor] = useState(null);
   const [selectSize, setSelectSize] = useState(null);
   const [colorValid,setColorValid]=useState(true);
-  const dispatch=useDispatch();
+  // const dispatch=useDispatch();
   const basketId=useSelector(state=>state.basket)
   function changeColor(id, imageId) {
     setColorActive(id);

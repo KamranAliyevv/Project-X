@@ -10,6 +10,10 @@ import Profile from './pages/Profile/Profile';
 import ProfileOrders from "./components/Profile/ProfileBody/ProfileOrders/ProfileOrders";
 import OrderDetail from './components/Profile/ProfileBody/OrderDetail/OrderDetail';
 import UserInfo from './components/Profile/ProfileBody/UserInfo/UserInfo';
+import Checkout from './pages/Checkout/Checkout';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import SuccessRegister from './pages/SuccessRegister/SuccessRegister';
 import Error from './pages/Error/Error';
 
 const App = () => {
@@ -28,6 +32,10 @@ const App = () => {
           <Route path='/profil/sifarisler/:id' element={<OrderDetail/>}></Route>
           <Route path='/profil/melumatlarim' element={<UserInfo/>}/>
         </Route>
+        <Route path='/checkout' element={<Checkout/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/register/success' element={<SuccessRegister/>}></Route>
         <Route path='*' element={<Error/>}></Route>
         </Route>
       </Routes>

@@ -1,0 +1,30 @@
+.register-success{
+    padding: 90px 0;
+
+    .register-success-inner{
+        @include flex(column,center,center);
+        img{
+            width: 100px;
+            height: 100%;
+        }
+        h4{
+            font-size: 28px;
+            line-height: 32px;
+            color: #333333;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        p{
+            font-size: 16px;
+            line-height: 20px;
+            color: $clr-gray-2;
+            margin-bottom: 10px;
+        }
+        a{
+            padding: 10px 40px;
+            color:#fff;
+            background-color: $clr-btn-green;
+            border-radius: 8px;
+        }
+    }
+}

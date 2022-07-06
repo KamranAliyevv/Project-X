@@ -1,0 +1,139 @@
+.checkout-list{
+    width: 65%;
+
+    @include media(992px){
+        width: 100%;
+        margin-bottom: 80px;
+    }
+
+    h4{
+        font-size: 24px;
+        line-height: 32px;
+        color:#1D2123;
+        margin-bottom: 32px
+    }
+
+    .checkout-list-inner{
+        @include flex(column);
+    }
+    .checkout-item{
+        padding: 32px 0;
+        border-top: 1px solid $clr-gray-3;
+    }
+    .form-group{
+        width: 48%;
+    }
+    .checkout-title{
+        font-size: 20px;
+        line-height: 28px;
+        color: $clr-gray-3;
+        width:100%;
+        @include flex(null,space-between,center);
+
+        svg{
+            font-size: 20px;
+        }
+        &.active{
+            color: #1D2123;
+
+            svg{
+                color: $clr-btn-green;
+            }
+        }
+        &.checked{
+            svg{
+                color: #fff;
+                background: green;
+                font-size: 23px;
+                border-radius: 50%;
+            }
+        }
+
+    }
+    input[type=tel]{
+        padding-left: 0;
+    }
+    
+    .card-btns{
+        @include flex($justify:center);
+        margin-bottom: 48px;
+        width: 100%;
+
+        @include media(650px){
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .card-btn{
+        @include flex(null,center,center);
+        font-size: 14px;
+        line-height: 20px;
+        color: #000000;
+        width: 250px;
+        padding: 14px 0;
+        text-align: center;
+        border: 1px solid $clr-gray-5;
+        transition: .7s;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &:first-child{
+            margin-right: 32px;
+
+            @include media(650px){
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        &:hover,
+        &.active{
+            background-color: $clr-gray-6;
+        }
+        
+        
+
+        svg{
+            margin-right: 20px;
+        }
+    }
+
+    .checkout-results{
+        @include flex(column);
+        margin-top: 20px;
+        padding-left: 30px;
+
+        &.dis-none{
+            display: none;
+        }
+
+        span{
+            font-size: 14px;
+            line-height: 20px;
+            color: #1D2123;
+
+            &:not(:last-child){
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    textarea{
+        resize: none;
+    }
+
+
+
+    // Material ui
+    .MuiPaper-root{
+        box-shadow: none;
+    }
+    .MuiButtonBase-root{
+        min-height: unset;
+    }
+    .MuiAccordionSummary-content{
+        margin: 0;
+    }
+    .MuiTypography-root{
+        width: 100%;
+    }
+}

@@ -2,9 +2,12 @@
     .form-group-list{
     @include flex($justify:space-between);
     flex-wrap: wrap;
+    width: 100%;
     }
    .form-group{
-    margin-bottom: 24px;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
     
     label{
         display: inline-block;
@@ -16,12 +19,21 @@
     .form-input{
         background-color: $clr-gray-6;
         border-radius: 8px;
-        padding: 0 16px;
         @include flex($align:center);
         height: 50px;
 
       *{
             border: 0;
+        }
+        .form-error{
+            font-size: 14px;
+            color: red;
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            background-color: pink;
+            width: 100%;
+            padding-left: 10px;
         }
 
         input,textarea,select{
@@ -33,13 +45,59 @@
             color: $clr-gray-1;
             height:100%;
         }
+        input,textarea{
+            padding: 16px 14px;
+        }
     }
+    &.agree{
+        @include flex($align:center);
+        font-size: 12px;
+        line-height: 16px;
+        color: $clr-gray-2;
+
+        .form-input{
+        background-color: #fff;
+        }
+
+        span{
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+        border: 1px solid $clr-gray-5;
+        margin-right: 8px;
+        position: relative;
+        @include flex(null,center,center);
+        cursor: pointer;
+
+        input{
+           display: none;
+        }
+        svg{
+            font-size: 18px;
+            color: #fff;
+            display: none;
+        }
+
+        &.checked{
+            background-color: $clr-btn-green;
+            svg{
+                display: block;
+            }
+        }
+        }
+        a{
+            color: #2D9CDB;
+            margin-right: 4px;
+        }
+        }
    } 
 
    > button{
     @include flex($align:center);
     background-color: $clr-btn-green;
-    padding: 16px 80px;
+    padding: 16px 0;
+    width: 200px;
+    @include flex($justify:center);
     font-size: 14px;
     line-height: 16px;
     color: #fff;

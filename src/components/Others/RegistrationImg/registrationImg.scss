@@ -1,0 +1,51 @@
+
+    .login-img-block{
+        width: 40%;
+        position: relative;
+
+        @include media(700px){
+            display: none;
+        }
+
+        img{
+            width: 90%;
+            height: 100%;
+        }
+        .bg-dots{
+            display: grid;
+            grid-template-columns: repeat(10,1fr);
+            gap: 10px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+
+            span{
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: #E5E5E5;
+            }
+        }
+    }
+    .have-account{
+        font-size: 14px;
+        line-height: 20px;
+        color: $clr-gray-2;
+        text-align: center;
+        margin-top: 24px;
+
+        &.left-side{
+            display: none;
+
+            @include media(700px){
+                display: block;
+            }
+        }
+
+        a{
+            color: #2D9CDB;
+            line-height: 16px;
+            font-weight: 500;
+        }
+    }

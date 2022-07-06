@@ -23,25 +23,25 @@ const UserInfo = () => {
         <form className="userForm">
          <div className="form-group-list">
          <div className="form-group">
-            <label forName="fName">Ad</label>
+            <label htmlFor="fName">Ad</label>
             <div className="form-input">
               <input type="text" id="fName" name="fName" />
             </div>
           </div>
           <div className="form-group">
-            <label forName="lName">Soyad</label>
+            <label htmlFor="lName">Soyad</label>
             <div className="form-input">
               <input type="text" id="lName" name="lName" />
             </div>
           </div>
           <div className="form-group">
-            <label forName="email">E-mail</label>
+            <label htmlFor="email">E-mail</label>
             <div className="form-input">
               <input type="text" id="email" name="email" />
             </div>
           </div>
           <div className="form-group">
-            <label forName="phoneNumber">Mobil nömrə</label>
+            <label htmlFor="phoneNumber">Mobil nömrə</label>
             <div className="form-input">
               <div className="select-box">
                 <FormControl sx={{ minWidth: 80 }} size="small">
@@ -58,7 +58,7 @@ const UserInfo = () => {
             </div>
           </div>
           <div className="form-group">
-            <label forName="birthday">Doğüm tarixi</label>
+            <label htmlFor="birthday">Doğüm tarixi</label>
             <div className="form-input">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker

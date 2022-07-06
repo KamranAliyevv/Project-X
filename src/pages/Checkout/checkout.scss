@@ -1,0 +1,13 @@
+@import "../../components/Checkout/CheckoutInfo/checkoutInfo.scss";
+@import "../../components/Checkout/CheckoutTotal/checkoutTotal.scss";
+
+.checkout{
+    padding: 50px 0;
+    .checkout-inner{
+        @include flex($justify:space-between);
+
+        @include media(992px){
+            flex-direction: column;
+        }
+    }
+}

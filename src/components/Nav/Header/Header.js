@@ -7,7 +7,7 @@ import logo from "../../../design/images/logo.png";
 import SubMenu from "./subMenu/SubMenu";
 import axios from "axios";
 import { baseURL } from "../../../api/baseUrl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -15,6 +15,9 @@ const Header = () => {
   const [sub, setSub] = useState([]);
   const [show, setShow] = useState(false);
   const navigate=useNavigate();
+  const location = useLocation();
+  const registerHeader=(location.pathname.includes("register") || location.pathname.includes("login"));
+
 
   async function getCategory() {
     const categoryUrl = new URL(baseURL + "/categories");
@@ -68,6 +71,8 @@ const Header = () => {
   return (
     <header id="header">
       <div className="container">
+        {
+          !registerHeader ?
         <div className="header-inner">
           <div className="header-top">
             <div className="header-left">
@@ -79,7 +84,7 @@ const Header = () => {
                 <span></span>
                 <span></span>
               </div>
-              <img src={logo} alt="icon" />
+              <Link to={"/"}><img src={logo} alt="icon" /></Link>
             </div>
             <div className={`header-search${open ? " none" : ""}`}>
               <form id="searchForm">
@@ -95,7 +100,7 @@ const Header = () => {
               </form>
             </div>
             <div className="header-icons">
-              <div className="user-icon">{<BiUser />}</div>
+              <div onClick={()=>navigate("/login")} className="user-icon">{<BiUser />}</div>
               <div className="favorites-icon">{<FiHeart />}</div>
               <div onClick={()=>navigate("/basket")} className="bag-icon">
                 <FiShoppingCart />
@@ -136,10 +141,10 @@ const Header = () => {
               })}
             </ul>
             <div className="menu-btns">
-              <Link to="">
+              <Link to="/login">
                 <span className="login-btn">Daxil ol</span>
               </Link>
-              <Link to="">
+              <Link to="/register">
                 <span className="register-btn">Qeydiyatdan keç</span>
               </Link>
             </div>
@@ -152,6 +157,11 @@ const Header = () => {
             subData={sub}
           />
         </div>
+        :
+        <div className="header-logo">
+        <Link to={"/"}><img src={logo} alt="icon" /></Link>
+        </div>
+}
       </div>
     </header>
   );

@@ -4,10 +4,19 @@
 @import "./utils/mixin";
 @import "./helper/form.scss";
 
+// Others Components
+
+@import "../../../components/Others/RegistrationImg/registrationImg.scss";
+
+
 // PAGES
 @import "../../../pages/Home/home.scss";
 @import "../../../pages/Products/products.scss";
 @import "../../../pages/Details/details.scss";
 @import "../../../pages/Basket/basket.scss";
 @import "../../../pages/Profile/profile.scss";
+@import "../../../pages/Checkout/checkout.scss";
+@import "../../../pages/Login/login.scss";
+@import "../../../pages/Register/register.scss";
+@import "../../../pages/SuccessRegister/successRegister.scss";
 @import "../../../pages/Error/error.scss";

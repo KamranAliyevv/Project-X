@@ -1,6 +1,6 @@
 import React from 'react'
 import BasketFull from '../../components/Basket/BasktFull/BasketFull';
-import BasketEmpty from '../../components/Basket/BasketEmpty/BasketEmpty';
+// import BasketEmpty from '../../components/Basket/BasketEmpty/BasketEmpty';
 
 const Basket = () => {
   return (

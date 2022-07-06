@@ -1,0 +1,68 @@
+@import "../../design/styles/Sass/utils/variables";
+@import "../../design/styles/Sass/utils/mixin";
+
+.login{
+    padding: 90px 0;
+    width: 90%;
+    margin: 0 auto;
+
+    .login-inner{
+        @include flex($justify:space-between);
+
+        .login-form{
+            width: 300px;
+            @include flex(column,center,center);
+
+            @include media(700px){
+                width: 100%;
+            }
+
+            > p{
+                font-size: 20px;
+                line-height: 28px;
+                font-weight: 500;
+                color: $clr-gray-2;
+                margin-bottom: 40px;
+            }
+        }
+        .social-login{
+            @include flex($justify:space-between);
+            width: 100%;
+            padding: 0 20px;
+        }
+        .social-btn{
+            @include flex(null,space-between,center);
+            font-size: 12px;
+            line-height: 16px;
+            cursor: pointer;
+
+            span{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                @include flex(null,center,center);
+                color: #fff;
+                font-size: 16px;
+                margin-right: 8px;
+
+                &.fb{
+                    background-color: #4267B2;
+                }
+                &.google{
+                    background-color: #DB4437;
+                }
+            }
+        }
+        .or{
+            font-size: 14px;
+            line-height: 18px;
+            color: $clr-gray-4;
+            margin-top: 32px;
+            margin-bottom: 24px;
+        }
+        .login-btn{
+            width: 100%;
+            margin-top: 24px;
+        }
+    }
+}

@@ -40,7 +40,6 @@ let settings = {
   initialSlide: 1,
   slidesToShow: 1,
   swipeToSlide:true,
-  speed:1000,
   variableWidth: true,
 };
 settings.dots=false;
