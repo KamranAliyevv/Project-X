@@ -8,6 +8,9 @@ import SubMenu from "./subMenu/SubMenu";
 import axios from "axios";
 import { baseURL } from "../../../api/baseUrl";
 import { useNavigate, useLocation } from "react-router-dom";
+import { createBasket } from '../../../redux/actions/basket';
+import { getBasket } from '../../../redux/actions/basket';
+import { useDispatch,useSelector } from 'react-redux';
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -16,8 +19,11 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const navigate=useNavigate();
   const location = useLocation();
+  const dispatch=useDispatch();
+  const localBasketId=localStorage.getItem("basketId") || null;
   const registerHeader=(location.pathname.includes("register") || location.pathname.includes("login"));
-
+  const basket=useSelector(state=>state.basket);
+  const products=basket?.response?.line_items;
 
   async function getCategory() {
     const categoryUrl = new URL(baseURL + "/categories");
@@ -68,6 +74,15 @@ const Header = () => {
   useEffect(() => {
     getCategory();
   }, []);
+
+  useEffect(()=>{
+  if(localBasketId===null){
+  dispatch(createBasket());
+  }
+  else{
+    dispatch(getBasket());
+  }
+},[dispatch])
   return (
     <header id="header">
       <div className="container">
@@ -104,7 +119,7 @@ const Header = () => {
               <div className="favorites-icon">{<FiHeart />}</div>
               <div onClick={()=>navigate("/basket")} className="bag-icon">
                 <FiShoppingCart />
-                <div className="bag-count">0</div>
+                <div className="bag-count">{products?.length}</div>
               </div>
             </div>
           </div>

@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 const CountCard = () => {
 
     const {accesories,phones,smart}=useSelector(state=>state);
-    console.log(smart)
   return (
     <div className='countCard'>
         <div className="container">

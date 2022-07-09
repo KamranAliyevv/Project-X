@@ -5,7 +5,8 @@ import { CgShoppingCart } from "react-icons/cg";
 import {AiOutlineInfoCircle} from "react-icons/ai";
 import {useSelector } from "react-redux/es/exports";
 import colorNameToHex from "@uiw/react-color-name";
-// import { createBasket } from "../../../../redux/actions/basket";
+import { useDispatch } from 'react-redux';
+import { addToBasket } from "../../../../redux/actions/basket";
 
 const DetailsBody = ({ setSelectImage }) => {
   const data = useSelector((state) => state.details);
@@ -16,8 +17,7 @@ const DetailsBody = ({ setSelectImage }) => {
   const [selectColor, setSelectColor] = useState(null);
   const [selectSize, setSelectSize] = useState(null);
   const [colorValid,setColorValid]=useState(true);
-  // const dispatch=useDispatch();
-  const basketId=useSelector(state=>state.basket)
+  const dispatch=useDispatch();
   function changeColor(id, imageId) {
     setColorActive(id);
     let d = [...data.response.assets].filter((el) => imageId.includes(el.id));
@@ -34,42 +34,19 @@ const DetailsBody = ({ setSelectImage }) => {
     }
   }, [data, setSelectImage]);
 
-  const addToBasket =async (item)=> {
-
+  function addProduct(productId){
+    console.log(productId)
     if(selectColor===null){
       setColorValid(false);
     }
     else{
-
-      console.log(basketId)
-      
-    //     const url = new URL(
-    //       `${baseURL}/carts/cart_kamrand43543`
-    //   );
-
-    //   let headers = {
-    //       "X-Authorization": "pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
-    //       "Content-Type": "application/json",
-    //       "Accept": "application/json",
-    //   };
-
-    //   // let body = {
-    //   //     "id": "prod_R4OANwRqklvYL8",
-    //   //     "quantity": 5,
-    //   //     "options":{
-    //   //       "color":selectColor,
-    //   //       "size":selectSize
-    //   //     },
-    //   // }
-
-    //   await axios.get(url, {
-    //     headers: headers,
-    // })
-    // .then(response=>{
-    //   console.log(response)
-    //   localStorage.setItem("cartId",response?.data?.id)
-    // })
-    // }
+      const basketId=localStorage.getItem("basketId");
+      let obj={
+        basketId,
+        productId,
+        count
+      }
+      dispatch(addToBasket(obj))
   }
 }
 
@@ -179,7 +156,7 @@ const DetailsBody = ({ setSelectImage }) => {
             {price ? price * count : data.response.price.raw * count} ₼
           </div>
         </div>
-        <button onClick={() => addToBasket(data.response)}>
+        <button onClick={() => addProduct(data.response.id)}>
           <CgShoppingCart />
           <p>Səbətə at</p>
         </button>

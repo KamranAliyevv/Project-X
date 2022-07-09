@@ -49,7 +49,9 @@ const Register = () => {
                 Google ilə
               </div>
             </div>
-            <span className="or">və ya</span>
+            <span className="or">və ya</
+            
+            span>
             <div className="form-group-list">
               <div className="form-group">
                 <label htmlFor="fName">Ad</label>

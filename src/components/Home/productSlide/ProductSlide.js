@@ -62,7 +62,7 @@ const ProductsSlider = ({products,text}) => {
         </div>
         <Slider {...settings}>
           {
-            products.map(item=>{
+            products?.map(item=>{
               return (
               item ? <ProductCard clickHandler={()=>clickHandler(item.id)} key={item.id} item={item}/>  : ""
               )
