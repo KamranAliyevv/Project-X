@@ -82,7 +82,7 @@ const Header = () => {
   else{
     dispatch(getBasket());
   }
-},[dispatch])
+},[dispatch,localBasketId])
   return (
     <header id="header">
       <div className="container">
