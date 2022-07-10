@@ -1,25 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { deleteFromBasket } from "../../../../redux/actions/basket";
 import { useDebouncedCallback } from 'use-debounce';
 import { updateBasket } from "../../../../redux/actions/basket";
+import colorNameToHex from "@uiw/react-color-name";
+import { toast } from 'react-toastify';
 
-const BasketContent = ({ products }) => {
+const BasketContent = ({ products, loading }) => {
   const [quantity, setQuantity] = useState({
-    count:1,
+    count:null,
     id:null
   });
+  const [toastify,setToastify]=useState(false);
   const dispatch=useDispatch();
 
   const updateDebounced = useDebouncedCallback(
-    (obj)=>
+    (obj,toastifyText)=>
     {
-        dispatch(updateBasket(obj));
-        setQuantity({count:1,id:null})
+        obj && dispatch(updateBasket(obj));
+        setToastify(toastifyText)
     },
-    1200
+    1000
   );
+  const counterDebounced = useDebouncedCallback(
+    (obj)=>{setQuantity(obj)},
+    20
+  );
+  
+  const notify = (text) => toast(text, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    type:"success"
+    });
 
   function deleteItem(lineItemId){
     const basketId=localStorage.getItem("basketId");
@@ -27,21 +45,38 @@ const BasketContent = ({ products }) => {
         basketId,
         lineItemId
       }
-    dispatch(deleteFromBasket(obj))
+      const notifyText="Məhsu silindi";
+      updateDebounced(null,notifyText)
+    dispatch(deleteFromBasket(obj));
   }
   function changeCount(type,qty,lineItemId){
     const basketId=localStorage.getItem("basketId");
-    let newQty=null;
-      newQty=(type==="minus") ? (quantity.count===1) ? 1 : qty-1  : qty+1;
-      console.log(newQty)
+    let newQty=quantity.count || qty;
+      newQty=(type==="minus") ? (quantity.count===1) ? 1 : newQty-1  : newQty+1;
       let obj={
         basketId,
         lineItemId,
-        qty:newQty
+        quantity:newQty
       }
-      setQuantity({count:newQty,id:lineItemId});
-      updateDebounced(obj);
+      let quantityObj={count:newQty,id:lineItemId}
+      const notifyText=(type==="plus")? "Məhsul artırıldı" : "Məhsul azaldıldı";
+      counterDebounced(quantityObj)
+      updateDebounced(obj,notifyText);
     }
+
+    useEffect(()=>{
+      if(!loading){
+        setQuantity({count:null,id:null});
+      }
+    },[products,loading])
+
+    useEffect(()=>{
+      if(!loading && toastify){
+        notify(toastify);
+        setToastify(false)
+      }
+    },[products,loading,toastify])
+    
     return (
     <div className="basket-list">
       {products.map((item) => {
@@ -61,11 +96,11 @@ const BasketContent = ({ products }) => {
                   <div className="item-options">
                     <div className="option">
                       <p>Rəng:</p>
-                      <span>Bənövşəyi</span>
+                      <span className="color" style={{ backgroundColor: colorNameToHex(item.selected_options[0].option_name)}}></span>
                     </div>
                     <div className="option">
                       <p>Yaddas:</p>
-                      <span>64 Gb</span>
+                      <span>{item.selected_options[1].option_name} Gb</span>
                     </div>
                   </div>
                   <div className="item-price">
@@ -74,10 +109,15 @@ const BasketContent = ({ products }) => {
                       <span className="new-price">{item.price.raw}</span>
                     </div>
                     <div className="counter">
-                      <span className="minus">-</span>
-                      <p>{item.quantity}</p>
-                      <span className="plus">+</span>
-                    </div>
+                <span
+                  onClick={()=>changeCount("minus",item.quantity,item.id)}
+                  className="minus"
+                >
+                  -
+                </span>
+                <p>{quantity.id===item.id ? quantity.count : item.quantity}</p>
+                <span onClick={()=>changeCount("plus",item.quantity,item.id)} className="plus">+</span>
+              </div>
                   </div>
                 </div>
               </div>

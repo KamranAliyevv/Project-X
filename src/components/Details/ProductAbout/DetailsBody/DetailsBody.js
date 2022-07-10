@@ -10,6 +10,7 @@ import { addToBasket } from "../../../../redux/actions/basket";
 
 const DetailsBody = ({ setSelectImage }) => {
   const data = useSelector((state) => state.details);
+  console.log(data)
   const [colorActive, setColorActive] = useState(null);
   const [storageActive, setStorageActive] = useState(null);
   const [count, setCount] = useState(1);
@@ -34,17 +35,23 @@ const DetailsBody = ({ setSelectImage }) => {
     }
   }, [data, setSelectImage]);
 
-  function addProduct(productId){
+  function addProduct(productId,colorId,sizeId){
     console.log(productId)
     if(selectColor===null){
       setColorValid(false);
     }
     else{
       const basketId=localStorage.getItem("basketId");
+      const colorId=data?.response?.variant_groups[0].id;
+      const sizeId=data?.response?.variant_groups[1].id;
       let obj={
         basketId,
         productId,
-        count
+        count,
+        selectColor,
+        colorId,
+        selectSize,
+        sizeId,
       }
       dispatch(addToBasket(obj))
   }

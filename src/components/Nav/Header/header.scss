@@ -1,3 +1,5 @@
+@import "../Search/searchList.scss";
+
 #header {
   position: sticky;
   top: 0;
@@ -91,6 +93,7 @@
     background-color: $clr-gray-5;
     margin-bottom: 12px;
     transition: .5s;
+    position: relative;
 
     &.none{
       display: none;

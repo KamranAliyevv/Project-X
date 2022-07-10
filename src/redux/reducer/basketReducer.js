@@ -32,7 +32,6 @@ const basketReducer =createSlice({
             state.error=payload
         },
         [addToBasket.fulfilled]: (state,{payload})=>{
-            console.log(payload)
             state.loading=false;
             state.response=payload;
         },
@@ -56,7 +55,6 @@ const basketReducer =createSlice({
             state.error=payload
         },
         [updateBasket.fulfilled]: (state,{payload})=>{
-            console.log(payload)
             state.loading=false;
             state.response=payload;
         }

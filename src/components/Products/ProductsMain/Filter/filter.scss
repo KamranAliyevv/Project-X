@@ -16,6 +16,7 @@
 
         &.active{
             left: 0;
+            height: 100vh;
         }
     }
 
@@ -100,6 +101,9 @@
 
         @include media(992px){
             display: block;
+        }
+        @include media(450px){
+            width: 90%;
         }
 
         &:hover{

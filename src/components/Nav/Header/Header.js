@@ -11,7 +11,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { createBasket } from '../../../redux/actions/basket';
 import { getBasket } from '../../../redux/actions/basket';
 import { useDispatch,useSelector } from 'react-redux';
-
+import SearchList from "../Search/SearchList";
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const [open, setOpen] = useState(false);
@@ -23,7 +23,9 @@ const Header = () => {
   const localBasketId=localStorage.getItem("basketId") || null;
   const registerHeader=(location.pathname.includes("register") || location.pathname.includes("login"));
   const basket=useSelector(state=>state.basket);
-  const products=basket?.response?.line_items;
+  const [focus,setFocus]=useState(false);
+  const [searchValue,setSearchValue]=useState(null);
+  const totalProducts=basket?.response?.total_items;
 
   async function getCategory() {
     const categoryUrl = new URL(baseURL + "/categories");
@@ -71,6 +73,16 @@ const Header = () => {
     setShow(false);
   }
 
+  function handleSearch(e){
+    let value=e.target.value;
+    if(value.trim().length>0){
+      setSearchValue(value.trim());
+    }
+    else{
+      setSearchValue(null);
+    }
+  }
+
   useEffect(() => {
     getCategory();
   }, []);
@@ -102,24 +114,28 @@ const Header = () => {
               <Link to={"/"}><img src={logo} alt="icon" /></Link>
             </div>
             <div className={`header-search${open ? " none" : ""}`}>
-              <form id="searchForm">
+              <form onChange={handleSearch} id="searchForm">
                 <button className="search-icon">
                   <FiSearch />
                 </button>
                 <input
+                  onFocus={()=>setFocus(true)}
+                  onBlur={()=>setFocus(false)}
                   type="text"
                   name="search"
                   id="search"
                   placeholder="Axtarış.."
+                  autoComplete="off"
                 />
               </form>
+              <SearchList focus={focus} searchValue={searchValue}/>
             </div>
             <div className="header-icons">
               <div onClick={()=>navigate("/login")} className="user-icon">{<BiUser />}</div>
               <div className="favorites-icon">{<FiHeart />}</div>
               <div onClick={()=>navigate("/basket")} className="bag-icon">
                 <FiShoppingCart />
-                <div className="bag-count">{products?.length}</div>
+                <div className="bag-count">{totalProducts}</div>
               </div>
             </div>
           </div>

@@ -107,7 +107,7 @@
             }
         }
         .option{
-            @include flex();
+            @include flex($align:center);
 
             &:not(:last-child){
                 margin-bottom: 2px;
@@ -126,6 +126,11 @@
                 font-size: 12px;
                 line-height: 16px;
                 color: $clr-gray-1;
+
+                &.color{
+                    width: 15px;
+                    height: 15px;
+                }
             }
         }
 
@@ -170,6 +175,7 @@
         span{
             font-size:20px;
             cursor: pointer;
+            user-select: none;
         }
         p{
             font-size: 16px;
