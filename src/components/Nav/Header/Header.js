@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiSearch, FiHeart, FiShoppingCart } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import { NavLink, Link } from "react-router-dom";
@@ -12,6 +12,8 @@ import { createBasket } from '../../../redux/actions/basket';
 import { getBasket } from '../../../redux/actions/basket';
 import { useDispatch,useSelector } from 'react-redux';
 import SearchList from "../Search/SearchList";
+import { search } from "../../../redux/reducer/productsReducer";
+
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const [open, setOpen] = useState(false);
@@ -26,6 +28,7 @@ const Header = () => {
   const [focus,setFocus]=useState(false);
   const [searchValue,setSearchValue]=useState(null);
   const totalProducts=basket?.response?.total_items;
+  const searchRef=useRef();
 
   async function getCategory() {
     const categoryUrl = new URL(baseURL + "/categories");
@@ -82,10 +85,31 @@ const Header = () => {
       setSearchValue(null);
     }
   }
+  function getSearching(e){
+    e.preventDefault();
+    let searchKeys=JSON.parse(localStorage.getItem("search")) || [];
+    const inputValue=searchRef.current.value.trim();
+    if(inputValue.length>0){
+    searchKeys.push(inputValue);
+    localStorage.setItem("search",JSON.stringify(searchKeys))
+    setFocus(false);
+    setSearchValue(null);
+    searchRef.current.blur()
+    navigate("/products");
+    dispatch(search(inputValue))
+    searchRef.current.value="";
+    }
+  }
 
   useEffect(() => {
     getCategory();
   }, []);
+
+  useEffect(()=>{
+    if(location.pathname!=="/products"){
+      dispatch(search(""))
+    }
+  },[location,dispatch])
 
   useEffect(()=>{
   if(localBasketId===null){
@@ -114,11 +138,12 @@ const Header = () => {
               <Link to={"/"}><img src={logo} alt="icon" /></Link>
             </div>
             <div className={`header-search${open ? " none" : ""}`}>
-              <form onChange={handleSearch} id="searchForm">
+              <form onSubmit={getSearching} onChange={handleSearch} id="searchForm">
                 <button className="search-icon">
                   <FiSearch />
                 </button>
                 <input
+                  ref={searchRef}
                   onFocus={()=>setFocus(true)}
                   onBlur={()=>setFocus(false)}
                   type="text"
@@ -146,8 +171,10 @@ const Header = () => {
                   <li
                     className={category.children.length > 0 ? "subActive" : ""}
                     onClick={() => {
+                      if(!category.children.length > 0){
+                        setOpen(false);
+                      }
                       getSubCategory(category, false);
-                      setOpen(false);
                     }}
                     onMouseOver={() => {
                       getSubCategory(category, true);

@@ -9,6 +9,15 @@
 
 #products{
     .products-inner{
-        @include flex($align:flex-start)
+        @include flex(null,space-between,flex-start);
+        flex-wrap: wrap;
+
+        h2{
+            font-size: 28px;
+            line-height: 36px;
+            color: #000;
+            margin-bottom: 20px;
+            width: 100%;
+        }
     }
 }

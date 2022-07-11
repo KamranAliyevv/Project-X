@@ -7,7 +7,8 @@ const initialState = {
   response: [],
   originalResponse: [],
   page:0,
-  maxProduct:6
+  maxProduct:6,
+  search:""
 };
 const productsReducer = createSlice({
   name: "products",
@@ -53,6 +54,16 @@ const productsReducer = createSlice({
 
     pagination: (state,{payload})=>{
       state.page=payload
+    },
+    search:(state,{payload})=>{
+      state.search=payload;
+     if(payload.length>0){
+      let searchProducts=state?.originalResponse?.filter((item)=>{
+        return item.name.toLowerCase().includes(payload);
+      })
+      state.originalResponse=searchProducts;
+      state.response=searchProducts;
+     }
     }
   },
   extraReducers: {
@@ -62,17 +73,15 @@ const productsReducer = createSlice({
     [fetchProducts.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
-      state.response = payload;
-      state.originalResponse = payload;
     },
     [fetchProducts.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.response = payload;
+      state.response = state.search.length>0 ? state.response : payload;
       state.originalResponse = payload;
     },
   },
 });
 
-export const { filter, sort, pagination} = productsReducer.actions;
+export const { filter, sort, pagination,search} = productsReducer.actions;
 
 export default productsReducer.reducer;

@@ -12,7 +12,6 @@ const Details = () => {
   const params=useParams();
 
   useEffect(()=>{
-    console.log(params)
     dispatch(fetchDetail(params.id));
     window.scrollTo(0, 0);
   },[dispatch,params])

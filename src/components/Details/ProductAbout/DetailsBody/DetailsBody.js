@@ -10,7 +10,6 @@ import { addToBasket } from "../../../../redux/actions/basket";
 
 const DetailsBody = ({ setSelectImage }) => {
   const data = useSelector((state) => state.details);
-  console.log(data)
   const [colorActive, setColorActive] = useState(null);
   const [storageActive, setStorageActive] = useState(null);
   const [count, setCount] = useState(1);
@@ -36,14 +35,14 @@ const DetailsBody = ({ setSelectImage }) => {
   }, [data, setSelectImage]);
 
   function addProduct(productId,colorId,sizeId){
-    console.log(productId)
+    console.log(data?.response)
     if(selectColor===null){
       setColorValid(false);
     }
     else{
       const basketId=localStorage.getItem("basketId");
-      const colorId=data?.response?.variant_groups[0].id;
-      const sizeId=data?.response?.variant_groups[1].id;
+      const colorId=data?.response?.variant_groups[0]?.id;
+      const sizeId=data?.response?.variant_groups[1]?.id;
       let obj={
         basketId,
         productId,
@@ -60,7 +59,7 @@ const DetailsBody = ({ setSelectImage }) => {
   useEffect(() => {
     setImage();
   }, [data, setImage]);
-  return data?.response && data?.response?.id !== undefined ? (
+  return data?.response?.id ?(
     <div className="details-body">
       <h3>{data.response.name}</h3>
       <div className="detail-user">

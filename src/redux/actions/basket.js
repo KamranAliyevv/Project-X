@@ -65,8 +65,8 @@ export const addToBasket = createAsyncThunk(
       Accept: "application/json",
     };
     let options={};
-    options[colorId]=selectColor;
-    options[sizeId]=selectSize;
+    if(colorId) options[colorId]=selectColor;
+    if(sizeId)  options[sizeId]=selectSize;
     let body = {
       id: productId,
       quantity: count,

@@ -67,6 +67,7 @@ useEffect(()=>{
         <h4>Filterləmələr</h4>
       </div>
         <form>
+        {!products?.search ? 
         <div className="filter-item">
 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
@@ -92,6 +93,7 @@ useEffect(()=>{
         </AccordionDetails>
       </Accordion>
       </div>
+      : null}
       <div className="filter-item">
 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary

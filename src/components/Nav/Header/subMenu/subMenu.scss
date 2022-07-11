@@ -16,7 +16,7 @@
 
     @include media(992px){
         z-index: 1000;
-        height: calc(100vh - 140px);
+        height: 100vh;
         top:50%;
         left: 100%;
         opacity: 1;
