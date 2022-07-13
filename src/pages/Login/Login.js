@@ -12,7 +12,6 @@ const Login = () => {
   } = useForm({ criteriaMode: "firstError" });
 
   function setLogin(data) {
-    console.log(data);
   }
 
   return (

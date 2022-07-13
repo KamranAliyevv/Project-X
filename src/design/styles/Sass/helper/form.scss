@@ -5,7 +5,7 @@
     width: 100%;
     }
    .form-group{
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     position: relative;
     width: 100%;
     
@@ -20,7 +20,7 @@
         background-color: $clr-gray-6;
         border-radius: 8px;
         @include flex($align:center);
-        height: 50px;
+        min-height: 50px;
 
       *{
             border: 0;
@@ -31,9 +31,10 @@
             position: absolute;
             bottom: -20px;
             left: 0;
-            background-color: pink;
+            background-color: rgb(255 192 203 / 50%);
             width: 100%;
-            padding-left: 10px;
+            padding:0 14px;
+            border-radius: 4px;
         }
 
         input,textarea,select{
@@ -47,6 +48,10 @@
         }
         input,textarea{
             padding: 16px 14px;
+        }
+        textarea{
+            min-height: 100px;
+            overflow: hidden;
         }
     }
     &.agree{

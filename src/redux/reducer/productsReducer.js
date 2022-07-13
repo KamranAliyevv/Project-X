@@ -21,7 +21,8 @@ const productsReducer = createSlice({
         if (
           item.price.raw >= payload.minPrice &&
           item.price.raw <= payload.maxPrice &&
-          (payload.brend.length===0 ? true : cats.find(x=>payload.brend.includes(x)))
+          (payload.brend.length===0 ? true : cats.find(x=>payload.brend.includes(x))) &&
+          item.name.toLowerCase().includes(state.search)
         ) {
             return item;
         }

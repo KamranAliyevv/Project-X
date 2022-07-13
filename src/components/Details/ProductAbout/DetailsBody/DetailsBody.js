@@ -35,7 +35,6 @@ const DetailsBody = ({ setSelectImage }) => {
   }, [data, setSelectImage]);
 
   function addProduct(productId,colorId,sizeId){
-    console.log(data?.response)
     if(selectColor===null){
       setColorValid(false);
     }

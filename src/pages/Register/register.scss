@@ -10,7 +10,7 @@
         @include flex($justify:space-between);
 
         .register-form{
-            width: 300px;
+            width: 40%;
             @include flex(column,center,center);
 
             @include media(700px){

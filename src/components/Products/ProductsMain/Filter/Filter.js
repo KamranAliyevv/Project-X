@@ -56,7 +56,6 @@ function allCheck(e){
 }
 
 useEffect(()=>{
-  console.log(filterItem)
   dispatch(filter(filterItem));
 },[filterItem,dispatch]);
 

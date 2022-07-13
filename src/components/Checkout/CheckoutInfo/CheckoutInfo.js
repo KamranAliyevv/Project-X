@@ -44,7 +44,6 @@ const CheckoutInfo = () => {
   };
 
   const saveUserInfo = (data, panel) => {
-    console.log(data)
     const inputs = Object.values(data);
     const keys = Object.keys(data);
     const all = [];

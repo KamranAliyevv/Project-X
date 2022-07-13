@@ -26,8 +26,10 @@
             @include media(992px){
                 position: absolute;
                 bottom: 5px;
-                // left: 50%;
-                width: 100%;
+                z-index: 10;
+                width: fit-content;
+                left: 50%;
+                transform: translateX(-50%);
                 @include flex($justify:center);
             }
             span{
@@ -51,5 +53,21 @@
        @include media(992px){
         padding-bottom: 60px;
        }
+    }
+
+    .skeleton-inner{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        margin-bottom: 30px;
+        @include flex();
+
+        .skeleton-item{
+            width: 220px;
+            height: 300px;
+            padding: 20px;
+            box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+            margin-right: 20px;
+        }
     }
 }

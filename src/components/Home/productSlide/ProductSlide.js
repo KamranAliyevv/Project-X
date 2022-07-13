@@ -2,37 +2,9 @@ import React from 'react'
 import Slider from "react-slick";
 import {FaAngleRight} from "react-icons/fa";
 import ProductCard from "../../Others/ProductCard/ProductCard";
-// var settings = {
-//     dots: true,
-//     infinite: false,
-//     speed: 1000,
-//     slidesToShow: 4,
-//     initialSlide: 1,
-//     swipeToSlide:true,
-//     dots:false,
-//     responsive: [
-//       {
-//         breakpoint: 1024,
-//         settings: {
-//           slidesToShow: 3,
-//           infinite: true,
-//         }
-//       },
-//       {
-//         breakpoint: 600,
-//         settings: {
-//           slidesToShow: 2,
-//           initialSlide: 2
-//         }
-//       },
-//       {
-//         breakpoint: 480,
-//         settings: {
-//           slidesToShow: 1,
-//         }
-//       }
-//     ]
-//   };
+import ProductCardSkeleton from "../../Others/Skeleton/ProductCardSkeleton";
+import {useNavigate} from "react-router-dom";
+
 let settings = {
   className: "slider variable-width",
   dots: false,
@@ -44,10 +16,9 @@ let settings = {
 };
 settings.dots=false;
   
-const ProductsSlider = ({products,text}) => {
-
+const ProductsSlider = ({products,loading,text,slug}) => {
+  const navigate=useNavigate();
   function clickHandler(){
-    console.log(1)
   }
   return (
     <div className='productSlider'>
@@ -55,11 +26,13 @@ const ProductsSlider = ({products,text}) => {
       <div className="productSlider-inner">
         <div className="productSlider-title">
           <h3>{text}</h3>
-          <div className='products-all'>
+          <div onClick={()=>navigate(`products/${slug}`)} className='products-all'>
             <span>Hamısına bax</span>
             <FaAngleRight/>
           </div>
         </div>
+          {
+            !loading ?
         <Slider {...settings}>
           {
             products?.map(item=>{
@@ -69,6 +42,17 @@ const ProductsSlider = ({products,text}) => {
             })
           }
         </Slider>
+        :
+        <div className="skeleton-inner">
+          {
+        new Array(5).fill("").map((item,index)=>{
+          return (
+            <div className='skeleton-item'><ProductCardSkeleton key={index}/></div>
+          )
+          })
+        }
+        </div>
+}
       </div>
     </div>
     </div>

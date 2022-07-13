@@ -13,7 +13,7 @@ const Basket = () => {
       <div className="container">
         <div className="basket-inner">
           <div className="basket-article">
-            Səbət ({products?.length} məhsul)
+            Səbət ({basket?.response?.total_items} məhsul)
           </div>
           <div className="basket-body">
             {products?.length > 0 ? <BasketFull /> : <BasketEmpty />}

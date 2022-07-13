@@ -13,6 +13,8 @@ import { getBasket } from '../../../redux/actions/basket';
 import { useDispatch,useSelector } from 'react-redux';
 import SearchList from "../Search/SearchList";
 import { search } from "../../../redux/reducer/productsReducer";
+import { useDebouncedCallback } from "use-debounce";
+
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -26,8 +28,10 @@ const Header = () => {
   const registerHeader=(location.pathname.includes("register") || location.pathname.includes("login"));
   const basket=useSelector(state=>state.basket);
   const [focus,setFocus]=useState(false);
+  const [notFocusInList,setNotFocusInList]=useState(false);
+  const [searchData,setSearchData]=useState(null);
   const [searchValue,setSearchValue]=useState(null);
-  const totalProducts=basket?.response?.total_items;
+  const [loading,setLoading]=useState(false);
   const searchRef=useRef();
 
   async function getCategory() {
@@ -71,20 +75,56 @@ const Header = () => {
     }
   }
 
+  const searchDebounced = useDebouncedCallback(
+    async (searchValue)=>
+    {
+      setLoading(true);
+      const url = new URL(
+        "https://api.chec.io/v1/products"
+    );
+    
+    let params = {
+        "query": searchValue,
+    };
+    Object.keys(params)
+        .forEach(key => url.searchParams.append(key, params[key]));
+    
+    let headers = {
+        "X-Authorization": "pk_4408807793810c86b8ba5b1a62726a2be3f8b50d8cd69",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    };
+    
+    const response=await axios.get(url, {
+        headers: headers,
+    })
+    console.log(response?.data?.data)
+    if (response?.data?.data) {
+      setSearchData(response.data.data);
+    }
+    setLoading(false);
+    },
+    500
+  );
+
   function openMenu() {
     setOpen(!open);
     setShow(false);
   }
 
   function handleSearch(e){
+    setSearchData(null);
     let value=e.target.value;
     if(value.trim().length>0){
       setSearchValue(value.trim());
+      searchDebounced(value.trim());
     }
     else{
       setSearchValue(null);
+      setLoading(false)
     }
   }
+
   function getSearching(e){
     e.preventDefault();
     let searchKeys=JSON.parse(localStorage.getItem("search")) || [];
@@ -93,7 +133,6 @@ const Header = () => {
     searchKeys.push(inputValue);
     localStorage.setItem("search",JSON.stringify(searchKeys))
     setFocus(false);
-    setSearchValue(null);
     searchRef.current.blur()
     navigate("/products");
     dispatch(search(inputValue))
@@ -109,6 +148,8 @@ const Header = () => {
     if(location.pathname!=="/products"){
       dispatch(search(""))
     }
+    setFocus(false);
+    setSearchValue(false);
   },[location,dispatch])
 
   useEffect(()=>{
@@ -140,12 +181,12 @@ const Header = () => {
             <div className={`header-search${open ? " none" : ""}`}>
               <form onSubmit={getSearching} onChange={handleSearch} id="searchForm">
                 <button className="search-icon">
-                  <FiSearch />
+                  {loading ? <div className="lds-dual-ring"></div>: <FiSearch />}
                 </button>
                 <input
                   ref={searchRef}
                   onFocus={()=>setFocus(true)}
-                  onBlur={()=>setFocus(false)}
+                  onBlur={()=>{if(!notFocusInList) setFocus(false)}}
                   type="text"
                   name="search"
                   id="search"
@@ -153,14 +194,14 @@ const Header = () => {
                   autoComplete="off"
                 />
               </form>
-              <SearchList focus={focus} searchValue={searchValue}/>
+              <SearchList focus={focus} notFocusInList={notFocusInList} setNotFocusInList={setNotFocusInList} searchValue={searchValue} searchData={searchData} searchRef={searchRef}/>
             </div>
             <div className="header-icons">
               <div onClick={()=>navigate("/login")} className="user-icon">{<BiUser />}</div>
               <div className="favorites-icon">{<FiHeart />}</div>
               <div onClick={()=>navigate("/basket")} className="bag-icon">
                 <FiShoppingCart />
-                <div className="bag-count">{totalProducts}</div>
+                <div className="bag-count">{basket?.response?.total_items}</div>
               </div>
             </div>
           </div>
@@ -184,7 +225,7 @@ const Header = () => {
                   >
                     {category.children.length === 0 ? (
                       <NavLink
-                        to={`${category.slug}`}
+                        to={`products/${category.slug}`}
                         className={(navData) =>
                           navData.isActive ? "active" : ""
                         }

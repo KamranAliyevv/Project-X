@@ -4,7 +4,7 @@ import {FaArrowLeft} from "react-icons/fa"
 const SubMenu = ({getSubCategory,subData,show,setShow,open}) => {
 
     return (
-    <div className={`subMenu ${show  ? "show" : ""}`} onMouseOver={()=>{getSubCategory(subData,true)}}>
+    <div className={`subMenu ${show  ? "show" : ""}`} >
         <div className="subMenu-inner">
             <div className="subMenu-overlay"></div>
             {subData?.children ? 

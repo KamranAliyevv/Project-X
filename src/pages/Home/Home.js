@@ -23,10 +23,10 @@ const Home = () => {
   return (
     <div id="home">
             <Banner/>
-            <ProductSlide products={phones.response.slice(0,8)} text="Ən çox satılan məhsullar"/>
-            <ProductSlide products={phones.response.slice(9,17)} text="Yeni gələn məhsullar"/>
+            <ProductSlide products={phones.response.slice(0,8)} loading={phones.loading} text="Ən çox satılan məhsullar" slug={"telefon"}/>
+            <ProductSlide products={phones.response.slice(9,17)} loading={phones.loading} text="Yeni gələn məhsullar" slug={"telefon"}/>
             <Card/>
-            <ProductSlide products={accesories.response} text="Yeni gələn aksessuarlar"/>
+            <ProductSlide products={accesories.response} loading={accesories.loading} text="Yeni gələn aksessuarlar" slug={"aksesuarlar"}/>
             <CountCard/>
             <Advantages/>
             <Partner/>

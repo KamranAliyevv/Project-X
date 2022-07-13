@@ -5,6 +5,7 @@
 
     @include media(800px){
         flex-direction: column;
+        padding: 0;
     }
 
     h3{

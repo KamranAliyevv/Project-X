@@ -6,6 +6,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { updateBasket } from "../../../../redux/actions/basket";
 import colorNameToHex from "@uiw/react-color-name";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const BasketContent = ({ products, loading }) => {
   const [quantity, setQuantity] = useState({
@@ -14,6 +15,7 @@ const BasketContent = ({ products, loading }) => {
   });
   const [toastify,setToastify]=useState(false);
   const dispatch=useDispatch();
+  const navigate=useNavigate();
 
   const updateDebounced = useDebouncedCallback(
     (obj,toastifyText)=>
@@ -76,14 +78,12 @@ const BasketContent = ({ products, loading }) => {
         setToastify(false)
       }
     },[products,loading,toastify])
-    
     return (
     <div className="basket-list">
       {products.map((item) => {
         return (
           <div key={item.id} className="basket-item">
-            <div className="item-img">
-              <input type="checkbox" />
+            <div onClick={()=>navigate(`/detail/${item.product_id}`)} className="item-img">
               <img
                 src={item.image.url}
                 alt="basketImg"
@@ -91,22 +91,26 @@ const BasketContent = ({ products, loading }) => {
             </div>
             <div className="basket-content">
               <div className="item-info">
-                <h3>{item.name}</h3>
+                <h3 onClick={()=>navigate(`/detail/${item.product_id}`)}>{item.name}</h3>
                 <div className="item-labels">
                   <div className="item-options">
+                  {item.selected_options[1] && 
                     <div className="option">
                       <p>Rəng:</p>
                       <span className="color" style={{ backgroundColor: colorNameToHex(item.selected_options[0].option_name)}}></span>
                     </div>
+                    }
+                    {item.selected_options[1] && 
                     <div className="option">
                       <p>Yaddas:</p>
                       <span>{item.selected_options[1].option_name} Gb</span>
                     </div>
+                    }
                   </div>
                   <div className="item-price">
                     <div className="price">
                       {/* <span className="old-price">200 ₼</span> */}
-                      <span className="new-price">{item.price.raw}</span>
+                      <span className="new-price">{item.price.raw} ₼</span>
                     </div>
                     <div className="counter">
                 <span

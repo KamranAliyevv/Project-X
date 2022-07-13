@@ -21,7 +21,7 @@ const CountCard = () => {
                             Məhsul sayı:
                             <span>{phones.response.length}</span>
                         </p>
-                        <Link to="/telefon">Məhsullar keçid <FaAngleRight/></Link>
+                        <Link to="/products/telefon">Məhsullar keçid <FaAngleRight/></Link>
                     </div>
                     <img src={phoneCard} alt="CardImage" />
                 </div>
@@ -34,7 +34,7 @@ const CountCard = () => {
                             Məhsul sayı:
                             <span>{smart.response.length}</span>
                         </p>
-                        <Link to="/smart-saat">Məhsullar keçid <FaAngleRight/></Link>
+                        <Link to="/products/smart-saat">Məhsullar keçid <FaAngleRight/></Link>
                     </div>
                     <img src={smartCard} alt="CardImage" />
                 </div>
@@ -45,7 +45,7 @@ const CountCard = () => {
                             Məhsul sayı:
                             <span>{accesories.response.length}</span>
                         </p>
-                        <Link to="/aksesuar">Məhsullar keçid <FaAngleRight/></Link>
+                        <Link to="/products/aksesuarlar">Məhsullar keçid <FaAngleRight/></Link>
                     </div>
                     <img src={aksesuarCard} alt="CardImage" />
                 </div>

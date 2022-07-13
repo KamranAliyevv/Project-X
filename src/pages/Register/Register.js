@@ -24,7 +24,6 @@ const Register = () => {
   };
 
   function setRegister(data) {
-    console.log(data);
   }
   return (
     <div className="register">
